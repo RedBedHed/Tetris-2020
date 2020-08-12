@@ -97,7 +97,7 @@ public final class TetrisLandscape implements Paintable {
      * an O(N) algorithm where N <= ~(400 + 10 + 4). The algorithm makes two passes over
      * the history {@code List} (once over the previous history and once over the current
      * history), and ensures that all updated data is unmodifiable prior to instantiation.
-     * This algorithm sacrifices efficiency for the immutability of the TetrisLandscape.
+     * This algorithm sacrifices efficiency for immutability.
      *
      * <p>
      * This method also handles scoring with an O(N) algorithm where N is the current level.
