@@ -24,7 +24,7 @@ import java.util.List;
 public final class TetrisLandscape implements Paintable {
 
     /** Constants */
-    private static final int LANDSCAPE_INITIAL_SIZE = 200;
+    private static final int LANDSCAPE_INITIAL_SIZE = 267;
     private static final int HISTORY_INITIAL_SIZE   =  20;
     private static final int POINTS_CACHE_SIZE      =  10;
     private static final int HISTORY_ROW_SIZE       =  10;
