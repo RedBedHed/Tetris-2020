@@ -211,7 +211,6 @@ public final class TetrisLandscape implements Paintable {
         return new TetrisLandscape(Collections.unmodifiableList(rh), pl.landscape, pl.score);
     }
 
-
     /**
      * A method to determine if a {@code Tetromino} has contacted the surface of the landscape.
      *
