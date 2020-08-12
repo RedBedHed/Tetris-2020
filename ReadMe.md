@@ -1,8 +1,8 @@
 # J-Tet
 
 J-Tet is a simple remake of classic Tetris in the Java programming language.
-J-Tet features its own little engine which showcases many immutable
-design patterns.
+J-Tet features its own little engine which showcases a handful of
+design patterns throughout each of its immutable classes.
 
 ![J-Tet](/images/RUNNING.png)
 ![J-Tet](/images/PAUSED.png)
