@@ -135,8 +135,8 @@ public final class Game {
      * A method to update the {@code Game}'s components from the {@code GridPanel}
      * class.
      *
-     * @param lineup the current lineup of {@code Engine.Tetromino}'s
-     * @param hold the current hold {@code Engine.Tetromino}
+     * @param lineup the current lineup of {@code Tetromino}s
+     * @param hold the current hold {@code Tetromino}
      * @param level the current level
      * @param score the current score
      */
