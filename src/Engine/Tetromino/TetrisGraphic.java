@@ -17,17 +17,17 @@ import java.awt.*;
 public abstract class TetrisGraphic implements Paintable {
 
     /**
-     * A reference location to orient this {@code Tetris Graphic}
+     * A reference location to orient this {@code Tetris Graphic}.
      */
     protected final Point axis;
 
     /**
-     * The color of this {@code tetrisGraphic}
+     * The color of this {@code tetrisGraphic}.
      */
     protected final Color color;
 
     /**
-     * The color code of this {@code tetrisGraphic} to be used in re-coloring
+     * The color code of this {@code tetrisGraphic} to be used in re-coloring.
      */
     protected final int colorCode;
 
