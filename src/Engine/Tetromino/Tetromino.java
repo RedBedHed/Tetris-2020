@@ -138,9 +138,9 @@ public class Tetromino extends TetrisGraphic {
         }
 
         /**
-         * A factory method to instantiate a random {@code Tetromino}.
+         * A factory method to instantiate a {@code List} of {@code Tetromino}s in random order.
          *
-         * @return a random {@code Tetromino}
+         * @return a shuffled {@code List} of all seven {@code Tetromino}s
          */
         public static List<Tetromino> generateLineup(final Palette palette) {
             final Orientation o = Orientation.FIRST;
