@@ -92,12 +92,13 @@ public final class TetrisLandscape implements Paintable {
     }
 
     /**
-     * A static factory method to instantiate an updated {@code TetrisLandscape} object
-     * using the previous {@code TetrisLandscape}. This method handles row-clearing with
-     * an O(N) algorithm where N <= ~(400 + 10 + 4). The algorithm makes two passes over
-     * the history {@code List} (once over the previous history and once over the current
-     * history), and ensures that all updated data is unmodifiable prior to instantiation.
-     * This algorithm sacrifices efficiency for immutability.
+     * A static factory method to instantiate an updated {@code TetrisLandscape}
+     * object directly after the current {@code Tetromino} has contacted the current
+     * {@code Landscape}. This method handles row-clearing with an O(N) algorithm where
+     * N is approximately 400 in the worst case. The algorithm makes two passes over
+     * the history {@code List} (once over the previous history and once over the
+     * current history), and ensures that all updated data is unmodifiable prior
+     * to instantiation. This algorithm sacrifices efficiency for immutability.
      *
      * <p>
      * This method also handles scoring with an O(N) algorithm where N is the current level.
@@ -115,32 +116,39 @@ public final class TetrisLandscape implements Paintable {
      * @param level the current level number
      * @return an updated {@code TetrisLandscape} object
      */
-    public static TetrisLandscape refresh(final TetrisLandscape pl,
-                                          final Tetromino t,
-                                          final int height,
-                                          final int level) {
+    public static TetrisLandscape mergeOnContact(final TetrisLandscape pl,
+                                                 final Tetromino t,
+                                                 final int height,
+                                                 final int level) {
 
         /*
          * Initialize a mutable copy of an immutable two-dimensional "history"
          * List with four empty Lists added as a buffer. Four is the maximum number of
-         * blocks that a Tetromino can contribute to the landscape in the vertical
+         * blocks that a Tetromino can contribute to the landscape in the northward
          * direction.
+         * O(N)
          */
         final int MAXIMUM_TET_HEIGHT = 4;
         final List<List<Square>> rh = new ArrayList<>(HISTORY_INITIAL_SIZE);
         for(final List<Square> ls: pl.history) {
-            if(ls.isEmpty()) break; rh.add(new ArrayList<>(ls));
+            if(ls.isEmpty()) break;
+            rh.add(new ArrayList<>(ls));
         }
         for(int j = 0; j < MAXIMUM_TET_HEIGHT; j++) rh.add(new ArrayList<>());
 
         /*
          * Add the current Tetromino's Squares to the replacement history.
+         * O(4)
          */
+        final int LAST_INDEX = HISTORY_INITIAL_SIZE - 1;
         for(final Square s: t.getBaseSquares()) {
             final int r = ((s.getAxis().y < 0) || (s.getAxis().y >= Utility.GRID_HEIGHT)) ?
-                    HISTORY_INITIAL_SIZE: (HISTORY_INITIAL_SIZE - 1) -
-                    (s.getAxis().y >>> Utility.LOG_2_SQUARE_LENGTH);
-            if(r < rh.size()) rh.get(r).add(s);
+                    HISTORY_INITIAL_SIZE:
+                    LAST_INDEX - (s.getAxis().y >>> Utility.LOG_2_SQUARE_LENGTH);
+            if(r >= rh.size()) throw new RuntimeException(
+                        "The given Tetromino must be touching the given landscape"
+            );
+            rh.get(r).add(s);
         }
 
         /*
@@ -151,6 +159,7 @@ public final class TetrisLandscape implements Paintable {
 
         /*
          * Omit any history row with 10 Squares or more. Shift down.
+         * O(N)
          */
         int lineCount = 0;
         for(int i = 0, j = i; j < rh.size(); i++, j++) {
@@ -171,6 +180,7 @@ public final class TetrisLandscape implements Paintable {
 
         /*
          * Score the current landscape.
+         * O(N)
          */
         int score = height + pl.score;
         switch(lineCount){
@@ -200,10 +210,10 @@ public final class TetrisLandscape implements Paintable {
      */
     public static TetrisLandscape reColor(final TetrisLandscape pl, final Palette p){
         final List<List<Square>> rh = new ArrayList<>();
-        for(List<Square> ls: pl.history) {
+        for(final List<Square> ls: pl.history) {
             if(ls.isEmpty()) break;
             final List<Square> rs = new ArrayList<>();
-            for(Square s: ls) rs.add(new Square(
+            for(final Square s: ls) rs.add(new Square(
                     s.getAxis(), p.getColor(s.getColorCode()), s.getColorCode()
             ));
             rh.add(Collections.unmodifiableList(rs));

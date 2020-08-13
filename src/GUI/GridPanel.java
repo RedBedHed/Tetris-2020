@@ -265,7 +265,7 @@ public class GridPanel extends JPanel {
     }
 
     private synchronized void postImpactGameUpdate(){
-        landscape = TetrisLandscape.refresh(landscape, currentTet, startingHeight, level);
+        landscape = TetrisLandscape.mergeOnContact(landscape, currentTet, startingHeight, level);
         updatePanel();
         Game.INSTANCE.update(tetLineup, tetHold, level, landscape.getScore());
         impactTransitionStatus = TransitionStatus.ACTIVE;
