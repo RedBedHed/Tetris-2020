@@ -118,8 +118,8 @@ public class GridPanel extends JPanel {
         scrollUpdateCount = 0;
         levelUpLimit = INITIAL_LEVEL_SCORE_LIMIT;
         startingHeight = 0;
-        level = 3;
-        scrollUpdateLimit = 25;//INITIAL_SCROLL_UPDATE_LIMIT;
+        level = 0;
+        scrollUpdateLimit = INITIAL_SCROLL_UPDATE_LIMIT;
         held = false;
         gameStatus = GameStatus.RUNNING;
     }
