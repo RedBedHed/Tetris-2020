@@ -36,24 +36,24 @@ public class GridPanel extends JPanel {
         TIMER_DELAY = 10;
     }
 
-    private volatile Tetromino currentTet;
-    private volatile Tetromino ghostTet;
-    private volatile List<Tetromino> tetLineup;
-    private volatile Tetromino tetHold;
-    private volatile int scrollUpdateCount;
-    private volatile int tetTransitionUpdateCount;
-    private volatile int levelTransitionUpdateCount;
-    private volatile int levelUpLimit;
-    private volatile int scrollUpdateLimit;
-    private volatile TetrisLandscape landscape;
-    private volatile TransitionStatus impactTransitionStatus;
-    private volatile TransitionStatus levelTransitionStatus;
-    private volatile GameStatus gameStatus;
-    private volatile int startingHeight;
-    private volatile boolean held;
-    private volatile ButtonType buttonType;
-    private volatile int level;
-    private volatile Palette palette;
+    private Tetromino currentTet;
+    private Tetromino ghostTet;
+    private List<Tetromino> tetLineup;
+    private Tetromino tetHold;
+    private int scrollUpdateCount;
+    private int tetTransitionUpdateCount;
+    private int levelTransitionUpdateCount;
+    private int levelUpLimit;
+    private int scrollUpdateLimit;
+    private TetrisLandscape landscape;
+    private TransitionStatus impactTransitionStatus;
+    private TransitionStatus levelTransitionStatus;
+    private GameStatus gameStatus;
+    private int startingHeight;
+    private boolean held;
+    private ButtonType buttonType;
+    private int level;
+    private Palette palette;
 
     public GridPanel(){
         setLayout(null);
