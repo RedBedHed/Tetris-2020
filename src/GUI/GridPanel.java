@@ -166,7 +166,7 @@ public class GridPanel extends JPanel {
             if (!ghostTet.isNull()) {
                 currentTet = ghostTet.manifest();
                 ghostTet = TetrominoFactory.NULL_TET;
-                postImpactGameUpdate();
+                postImpactUpdate();
             }
         }
         else if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W) {
@@ -216,7 +216,7 @@ public class GridPanel extends JPanel {
                 landscape = TetrisLandscape.reColor(landscape, palette);
                 final List<Tetromino> replacementLineup = new ArrayList<>();
                 for (Tetromino t : tetLineup) replacementLineup.add(TetrominoFactory.reColor(t, palette));
-                tetLineup = Collections.unmodifiableList(replacementLineup);
+                tetLineup = Utility.lockedList(replacementLineup);
                 currentTet = TetrominoFactory.reColor(currentTet, palette);
                 ghostTet = TetrominoFactory.ghostInstance(TetrominoFactory.reColor(ghostTet, palette));
                 tetHold = TetrominoFactory.reColor(tetHold, palette);
@@ -252,7 +252,7 @@ public class GridPanel extends JPanel {
                 if (scrollUpdateCount >= scrollUpdateLimit) {
                     scrollUpdateCount = 0;
                     if (landscape.imminentImpact(currentTet)) {
-                        postImpactGameUpdate();
+                        postImpactUpdate();
                         return;
                     } else {
                         currentTet = TetrominoFactory.fallingInstance(currentTet);
@@ -264,7 +264,7 @@ public class GridPanel extends JPanel {
         }
     }
 
-    private synchronized void postImpactGameUpdate(){
+    private synchronized void postImpactUpdate(){
         landscape = TetrisLandscape.mergeOnContact(landscape, currentTet, startingHeight, level);
         updatePanel();
         Game.INSTANCE.update(tetLineup, tetHold, level, landscape.getScore());
