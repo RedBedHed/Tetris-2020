@@ -32,7 +32,7 @@ public enum Palette implements Paintable {
             final Graphics2D g2 = (Graphics2D) g;
             g2.setColor(Color.BLACK);
             fillBackground(g2);
-            g2.drawImage(Image.SEA_FLOOR.get(), 0, 0, 400, 660, null);
+            g2.drawImage(Image.SEA_FLOOR, 0, 0, 400, 660, null);
             drawLines(g2);
         }
     },
@@ -55,7 +55,7 @@ public enum Palette implements Paintable {
             final Graphics2D g2 = (Graphics2D) g;
             g2.setColor(Color.BLACK);
             fillBackground(g2);
-            g2.drawImage(Image.SUNSET.get(), 0, 0, 850, 660, null);
+            g2.drawImage(Image.SUNSET, 0, 0, 850, 660, null);
             drawLines(g2);
         }
     },
@@ -78,7 +78,7 @@ public enum Palette implements Paintable {
             final Graphics2D g2 = (Graphics2D) g;
             g2.setColor(Color.BLACK);
             fillBackground(g2);
-            g2.drawImage(Image.OBSIDIAN.get(), 0, 0, 400, 660, null);
+            g2.drawImage(Image.OBSIDIAN, 0, 0, 400, 660, null);
             drawLines(g2);
         }
     },
@@ -101,7 +101,7 @@ public enum Palette implements Paintable {
             final Graphics2D g2 = (Graphics2D) g;
             g2.setColor(Color.BLACK);
             fillBackground(g2);
-            g2.drawImage(Image.GREEN.get(), 0, 0, 420, 650, null);
+            g2.drawImage(Image.GREEN, 0, 0, 420, 650, null);
             drawLines(g2);
         }
     },
@@ -124,7 +124,7 @@ public enum Palette implements Paintable {
             final Graphics2D g2 = (Graphics2D) g;
             g2.setColor(Color.BLACK);
             fillBackground(g2);
-            g2.drawImage(Image.NIGHT_SKY.get(), 0, 0, 400, 660, null);
+            g2.drawImage(Image.NIGHT_SKY, 0, 0, 400, 660, null);
             drawLines(g2);
         }
     },
@@ -205,17 +205,15 @@ public enum Palette implements Paintable {
             g.drawLine(0, i, Utility.GRID_WIDTH, i);
     }
 
-    private enum Image {
+    private static class Image {
 
-        OBSIDIAN("obs.png"),
-        SEA_FLOOR("floor.png"),
-        NIGHT_SKY("sky.png"),
-        SUNSET("sunset.png"),
-        GREEN("green.png");
+        private static final BufferedImage OBSIDIAN = load("obs.png");
+        private static final BufferedImage SEA_FLOOR = load("floor.png");
+        private static final BufferedImage NIGHT_SKY = load("sky.png");
+        private static final BufferedImage SUNSET = load("sunset.png");
+        private static final BufferedImage GREEN = load("green.png");
 
-        private BufferedImage image;
-
-        Image(final String fileName){
+        private static BufferedImage load(final String fileName){
             BufferedImage image;
             try {
                 image = ImageIO.read(new File(
@@ -224,12 +222,9 @@ public enum Palette implements Paintable {
             } catch(IOException e) {
                 image = null; e.printStackTrace();
             }
-            this.image = image;
-        }
-
-        public BufferedImage get(){
             return image;
         }
+
     }
 
     public abstract Palette next();
