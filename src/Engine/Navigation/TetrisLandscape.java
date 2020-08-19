@@ -146,7 +146,7 @@ public final class TetrisLandscape implements Paintable {
                     HISTORY_INITIAL_SIZE:
                     LAST_INDEX - (s.getAxis().y >>> Utility.LOG_2_SQUARE_LENGTH);
             if(r >= rh.size()) throw new RuntimeException(
-                        "The given Tetromino must be touching the given landscape"
+                        "The given Tetromino must be adjacent to the given landscape."
             );
             rh.get(r).add(s);
         }
