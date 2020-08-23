@@ -378,7 +378,9 @@ public class GridPanel extends JPanel {
             g2.setFont(new Font("TimesRoman", Font.PLAIN, SUB_TEXT_SIZE));
             g2.drawString(String.format(
                     "Your score is %d", landscape.getScore()),
-                    90 - (Utility.countPositiveDigits(landscape.getScore()) << LOG_2_8), 290
+                    90 - (Utility.countPositiveDigits(
+                            landscape.getScore()) << LOG_2_8
+                    ), 290
             );
             g2.drawString("Restart?", 115,400);
             if(buttonType.isYes()) g2.setColor(Color.BLACK);
