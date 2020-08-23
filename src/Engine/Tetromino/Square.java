@@ -22,9 +22,10 @@ public class Square extends TetrisGraphic {
      *
      * @param upperLeftCorner the upper left corner of this {@code Square}
      * @param color the color of this {@code Square}
+     * @param colorCode an identifier for use in recoloring
      */
-    public Square(final Point upperLeftCorner, final Color color, final int colorTag) {
-        super(upperLeftCorner, color, colorTag);
+    public Square(final Point upperLeftCorner, final Color color, final int colorCode) {
+        super(upperLeftCorner, color, colorCode);
     }
 
     /**

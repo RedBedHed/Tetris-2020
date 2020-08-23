@@ -172,22 +172,22 @@ public class GridPanel extends JPanel {
         else if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W) {
             final Tetromino temp = currentTet;
             if((currentTet = landscape.tryRotation(currentTet)) != temp)
-                ghostTet = findGhost(currentTet, false);
+                ghostTet = findGhost(currentTet);
         }
         else if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A) {
             final Tetromino temp = currentTet;
             if ((currentTet = landscape.tryMovingLeft(currentTet)) != temp)
-                ghostTet = findGhost(currentTet, false);
+                ghostTet = findGhost(currentTet);
         }
         else if (keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_D) {
             final Tetromino temp = currentTet;
             if ((currentTet = landscape.tryMovingRight(currentTet)) != temp)
-                ghostTet = findGhost(currentTet, false);
+                ghostTet = findGhost(currentTet);
         }
         else if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S) {
             final Tetromino temp = currentTet;
             if ((currentTet = landscape.tryFalling(currentTet)) != temp)
-                ghostTet = findGhost(currentTet, false);
+                ghostTet = findGhost(currentTet);
         }
         else if (keyCode == KeyEvent.VK_C) {
             if (!held && currentTet != TetrominoFactory.NULL_TET) {
@@ -198,7 +198,7 @@ public class GridPanel extends JPanel {
                     final Tetromino temp = TetrominoFactory.respawn(currentTet);
                     currentTet = tetHold;
                     tetHold = temp;
-                    ghostTet = findGhost(currentTet, true);
+                    ghostTet = findGhost(currentTet);
                 }
                 held = true;
                 Game.INSTANCE.update(tetLineup, tetHold, level, landscape.getScore());
@@ -256,7 +256,7 @@ public class GridPanel extends JPanel {
                         return;
                     } else {
                         currentTet = TetrominoFactory.fallingInstance(currentTet);
-                        ghostTet = findGhost(currentTet, false);
+                        ghostTet = findGhost(currentTet);
                     }
                 }
             }
@@ -265,7 +265,7 @@ public class GridPanel extends JPanel {
     }
 
     private synchronized void postImpactUpdate(){
-        landscape = TetrisLandscape.mergeOnContact(landscape, currentTet, startingHeight, level);
+        landscape = TetrisLandscape.mergeOnContact(landscape, currentTet, level);
         updatePanel();
         Game.INSTANCE.update(tetLineup, tetHold, level, landscape.getScore());
         impactTransitionStatus = TransitionStatus.ACTIVE;
@@ -321,23 +321,19 @@ public class GridPanel extends JPanel {
 
     }
 
-    private Tetromino findGhost(final Tetromino currentTet, final boolean isNew){
+    private Tetromino findGhost(final Tetromino currentTet){
         if(currentTet.isNull()) return currentTet;
         int x = currentTet.getAxis().x;
         int y = currentTet.getAxis().y;
-        int count = 0;
         Tetromino ghost = TetrominoFactory.copyAt(x, y, currentTet);
-        while(!landscape.imminentImpact(ghost)){
-            count++;
+        while(!landscape.imminentImpact(ghost))
             ghost = TetrominoFactory.fallingInstance(ghost);
-        }
-        if(isNew) startingHeight = count;
         return TetrominoFactory.ghostInstance(ghost);
     }
 
     private void transition(){
         currentTet = tetLineup.get(0);
-        ghostTet = findGhost(currentTet, true);
+        ghostTet = findGhost(currentTet);
         final List<Tetromino> replacementTetLineup = new ArrayList<>(12);
         for (int i = 1; i < tetLineup.size(); i++) replacementTetLineup.add(tetLineup.get(i));
         if (tetLineup.size() <= 5) replacementTetLineup.addAll(TetrominoFactory.generateLineup(palette));

@@ -37,6 +37,7 @@ public abstract class TetrisGraphic implements Paintable {
      *
      * @param p a reference location to orient this {@code Tetris Graphic}
      * @param color the color of this {@code tetrisGraphic}
+     * @param colorCode an identifier for use in recoloring
      */
     protected TetrisGraphic(final Point p, final Color color, final int colorCode){
         this.axis = p;

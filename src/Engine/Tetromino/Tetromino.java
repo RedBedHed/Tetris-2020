@@ -42,9 +42,9 @@ public class Tetromino extends TetrisGraphic {
 
     /* init */
     static {
-        I_SHAPE_ON_AXIS_SPAWN_POINT = new Point(160, 32);
-        O_SHAPE_ON_AXIS_SPAWN_POINT = new Point(160,  0);
-        OFF_AXIS_SPAWN_POINT        = new Point(176, 16);
+        I_SHAPE_ON_AXIS_SPAWN_POINT = new Point(160,32);
+        O_SHAPE_ON_AXIS_SPAWN_POINT = new Point(160, 0);
+        OFF_AXIS_SPAWN_POINT        = new Point(176,16);
     }
 
     /**
@@ -63,6 +63,11 @@ public class Tetromino extends TetrisGraphic {
     private final Shape shape;
 
     /**
+     * How far this {@code Tetromino} has fallen from its spawn point.
+     */
+    private final int depth;
+
+    /**
      * A private, primary constructor for a {@code Tetromino} intended
      * for use by the {@code TetrominoFactory}.
      *
@@ -70,18 +75,22 @@ public class Tetromino extends TetrisGraphic {
      * @param shape the shape of this {@code Tetromino}
      * @param orientation the orientation of this {@code Tetromino}
      * @param color the color of this {@code Tetromino}
+     * @param colorCode an identifier for use in recoloring
+     * @param depth how many lines this {@code Tetromino} has fallen
      */
     private Tetromino(final Point axis,
                       final Shape shape,
                       final Orientation orientation,
                       final Color color,
-                      final int colorCode){
+                      final int colorCode,
+                      final int depth){
         super(axis, color, colorCode);
         this.baseSquares = shape.assemblyLine.get(
                 orientation.ordinal()
         ).assemble(axis, color, colorCode);
         this.orientation = orientation;
         this.shape = shape;
+        this.depth = depth;
     }
 
     /**
@@ -93,17 +102,21 @@ public class Tetromino extends TetrisGraphic {
      * @param shape the shape of this {@code Tetromino}
      * @param orientation the orientation of this {@code Tetromino}
      * @param color the color of this {@code Tetromino}
+     * @param colorCode an identifier for use in recoloring
+     * @param depth how many lines this {@code Tetromino} has fallen
      */
     private Tetromino(final Point axis,
                       final List<Square> baseSquares,
                       final Shape shape,
                       final Orientation orientation,
                       final Color color,
-                      final int colorCode){
+                      final int colorCode,
+                      final int depth){
         super(axis, color, colorCode);
         this.baseSquares = baseSquares;
         this.orientation = orientation;
         this.shape = shape;
+        this.depth = depth;
     }
 
     /**
@@ -123,7 +136,7 @@ public class Tetromino extends TetrisGraphic {
         private static final class NullTetromino extends Tetromino {
 
             private NullTetromino() {
-                super(Point.NULL, Shape.NULL, Orientation.FIRST, Color.WHITE, -1);
+                super(Point.NULL, Shape.NULL, Orientation.FIRST, Color.WHITE, -1, -1);
             }
 
             @Override
@@ -145,13 +158,13 @@ public class Tetromino extends TetrisGraphic {
         public static List<Tetromino> generateLineup(final Palette palette) {
             final Orientation o = Orientation.FIRST;
             return Utility.shuffle(new Tetromino[]{
-                    new Tetromino(Shape.I.getSpawnPoint(), Shape.I, o, genColor(palette), 0),
-                    new Tetromino(Shape.J.getSpawnPoint(), Shape.J, o, genColor(palette), 1),
-                    new Tetromino(Shape.L.getSpawnPoint(), Shape.L, o, genColor(palette), 2),
-                    new Tetromino(Shape.O.getSpawnPoint(), Shape.O, o, genColor(palette), 3),
-                    new Tetromino(Shape.S.getSpawnPoint(), Shape.S, o, genColor(palette), 4),
-                    new Tetromino(Shape.T.getSpawnPoint(), Shape.T, o, genColor(palette), 5),
-                    new Tetromino(Shape.Z.getSpawnPoint(), Shape.Z, o, genColor(palette), 6)
+                    new Tetromino(Shape.I.getSpawnPoint(), Shape.I, o, genColor(palette), 0, 1),
+                    new Tetromino(Shape.J.getSpawnPoint(), Shape.J, o, genColor(palette), 1, 1),
+                    new Tetromino(Shape.L.getSpawnPoint(), Shape.L, o, genColor(palette), 2, 1),
+                    new Tetromino(Shape.O.getSpawnPoint(), Shape.O, o, genColor(palette), 3, 1),
+                    new Tetromino(Shape.S.getSpawnPoint(), Shape.S, o, genColor(palette), 4, 1),
+                    new Tetromino(Shape.T.getSpawnPoint(), Shape.T, o, genColor(palette), 5, 1),
+                    new Tetromino(Shape.Z.getSpawnPoint(), Shape.Z, o, genColor(palette), 6, 1)
             });
         }
 
@@ -169,7 +182,7 @@ public class Tetromino extends TetrisGraphic {
         public static Tetromino rotatingInstance(final Tetromino t) {
             if (t == null || t.isNull()) return NULL_TET;
             final Orientation o = t.orientation.rotateClockwise();
-            return new Tetromino(t.axis, t.shape, o, t.color, t.colorCode);
+            return new Tetromino(t.axis, t.shape, o, t.color, t.colorCode, t.depth);
         }
 
         /**
@@ -182,7 +195,7 @@ public class Tetromino extends TetrisGraphic {
         public static Tetromino fallingInstance(final Tetromino t) {
             if (t == null || t.isNull()) return NULL_TET;
             final Point p = Direction.DOWN.traverse(t.axis);
-            return new Tetromino(p, t.shape, t.orientation, t.color, t.colorCode);
+            return new Tetromino(p, t.shape, t.orientation, t.color, t.colorCode, t.depth + 1);
         }
 
         /**
@@ -195,7 +208,9 @@ public class Tetromino extends TetrisGraphic {
          */
         public static Tetromino slidingInstance(final Tetromino t, final Direction d) {
             if (t == null || t.isNull()) return NULL_TET;
-            return new Tetromino(d.traverse(t.axis), t.shape, t.orientation, t.color, t.colorCode);
+            return new Tetromino(
+                    d.traverse(t.axis), t.shape, t.orientation, t.color, t.colorCode, t.depth
+            );
         }
 
         /**
@@ -215,7 +230,10 @@ public class Tetromino extends TetrisGraphic {
             private final Tetromino decoratedTetromino;
 
             private GhostTetromino(final Tetromino t) {
-                super(t.axis, fadedSquares(t.baseSquares), t.shape, t.orientation, t.color, t.colorCode);
+                super(
+                        t.axis, fadedSquares(t.baseSquares), t.shape,
+                        t.orientation, t.color, t.colorCode, t.depth
+                );
                 decoratedTetromino = t;
             }
 
@@ -239,11 +257,15 @@ public class Tetromino extends TetrisGraphic {
          * @param x the x coordinate of the new {@code Tetromino}
          * @param y the y coordinate of the new {@code Tetromino}
          * @param t the {@code Tetromino} to be copied
-         * @return a {@code Tetromino} at the specified coordinates.
+         * @return a {@code Tetromino} at the specified coordinates or {@code NullTetromino} if
+         * the given coordinates lie beneath the x and y axes.
          */
         public static Tetromino copyAt(final int x, final int y, final Tetromino t){
-            if (t == null || t.isNull()) return NULL_TET;
-            return new Tetromino(new Point(x, y), t.shape, t.orientation, t.color, t.colorCode);
+            if(x < 0 || y < 0 || t == null || t.isNull()) return NULL_TET;
+            return new Tetromino(
+                    new Point(x, y), t.shape, t.orientation, t.color,
+                    t.colorCode, (y >>> Utility.LOG_2_SQUARE_LENGTH) + 1
+            );
         }
 
         /**
@@ -255,7 +277,9 @@ public class Tetromino extends TetrisGraphic {
          */
         public static Tetromino respawn(final Tetromino t){
             if (t == null || t.isNull()) return NULL_TET;
-            return new Tetromino(t.shape.getSpawnPoint(), t.shape, Orientation.FIRST, t.color, t.colorCode);
+            return new Tetromino(
+                    t.shape.getSpawnPoint(), t.shape, Orientation.FIRST, t.color, t.colorCode, 1
+            );
         }
 
         /**
@@ -263,11 +287,13 @@ public class Tetromino extends TetrisGraphic {
          * given {@code palette} that matches the original color code.
          *
          * @param t the {@code Tetromino} to be re-colored
-         * @return a re-colored {@code Engine.Tetromino}.
+         * @return a re-colored {@code Tetromino}.
          */
         public static Tetromino reColor(final Tetromino t, final Palette p){
             if (t == null || t.isNull()) return NULL_TET;
-            return new Tetromino(t.axis, t.shape, t.orientation, p.getColor(t.colorCode), t.colorCode);
+            return new Tetromino(
+                    t.axis, t.shape, t.orientation, p.getColor(t.colorCode), t.colorCode, t.depth
+            );
         }
 
     }
@@ -283,7 +309,7 @@ public class Tetromino extends TetrisGraphic {
     /**
      * Exposes this {@code Tetromino}'s base squares.
      *
-     * @return a {@code List} of the squares occupied by this {@code Engine.Tetromino}.
+     * @return a {@code List} of the squares occupied by this {@code Tetromino}.
      */
     public final List<Square> getBaseSquares(){
         return baseSquares;
@@ -297,6 +323,15 @@ public class Tetromino extends TetrisGraphic {
      */
     public boolean isNull(){
         return false;
+    }
+
+    /**
+     * Exposes this {@code Tetromino}'s depth.
+     *
+     * @return this {@code Tetromino}'s depth
+     */
+    public int getDepth(){
+        return depth;
     }
 
     /**
@@ -399,7 +434,7 @@ public class Tetromino extends TetrisGraphic {
         }).with(new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - 32;
+                final int clx = axis.x - Utility.SQUARE_LENGTH;
                 return List.of(
                         new Square(new Point(clx, axis.y), color, colorCode),
                         new Square(new Point(clx, axis.y - Utility.DOUBLE_SQUARE_LENGTH), color, colorCode),

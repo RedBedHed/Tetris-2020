@@ -23,7 +23,7 @@ import java.util.List;
  */
 public final class TetrisLandscape implements Paintable {
 
-    /** Constants */
+    /* Constants */
     private static final int LANDSCAPE_INITIAL_SIZE = 267;
     private static final int HISTORY_INITIAL_SIZE   =  20;
     private static final int POINTS_CACHE_SIZE      =  10;
@@ -112,13 +112,11 @@ public final class TetrisLandscape implements Paintable {
      *
      * @param pl the {@code TetrisLandscape} object
      * @param t the current {@code Tetromino} to be added
-     * @param height the number of squares the current {@code Tetromino} has travelled
      * @param level the current level number
      * @return an updated {@code TetrisLandscape} object
      */
     public static TetrisLandscape mergeOnContact(final TetrisLandscape pl,
                                                  final Tetromino t,
-                                                 final int height,
                                                  final int level) {
 
         /*
@@ -182,7 +180,7 @@ public final class TetrisLandscape implements Paintable {
          * Score the current landscape.
          * O(N)
          */
-        int score = height + pl.score;
+        int score = t.getDepth() + pl.score;
         switch(lineCount){
             case 4: for(int k = 0; k <= level; k++) score += 1200; break;
             case 3: for(int k = 0; k <= level; k++)  score += 300; break;
