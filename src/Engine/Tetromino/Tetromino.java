@@ -85,7 +85,7 @@ public class Tetromino extends TetrisGraphic {
                       final int colorCode,
                       final int depth){
         super(axis, color, colorCode);
-        this.baseSquares = shape.assemblyStation.get(
+        this.baseSquares = shape.assemblyLines.get(
                 orientation.ordinal()
         ).assemble(axis, color, colorCode);
         this.orientation = orientation;
@@ -813,13 +813,13 @@ public class Tetromino extends TetrisGraphic {
          * A {@code List} of {@code Assembler} implementations with indices that correspond
          * to each {@code Orientation} ordinal value.
          */
-        private final List<Assembler> assemblyStation;
+        private final List<Assembler> assemblyLines;
 
         /**
          * A private constructor for a {@code Shape}.
          */
-        Shape(final List<Assembler> assemblyStation){
-            this.assemblyStation = assemblyStation;
+        Shape(final List<Assembler> assemblyLines){
+            this.assemblyLines = assemblyLines;
         }
 
         /**
