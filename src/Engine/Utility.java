@@ -9,7 +9,7 @@ import java.util.*;
  * A class containing static methods and constants to be used
  * throughout the {@code Engine} package.
  */
-public class Utility {
+public final class Utility {
 
     /** No touchie~! */
     private Utility(){

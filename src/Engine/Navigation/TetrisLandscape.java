@@ -93,7 +93,7 @@ public final class TetrisLandscape implements Paintable {
 
     /**
      * A static factory method to instantiate an updated {@code TetrisLandscape}
-     * object directly after the current {@code Tetromino} has contacted the current
+     * object immediately after the current {@code Tetromino} has contacted the current
      * {@code Landscape}. This method handles row-clearing with an O(N) algorithm where
      * N is approximately 400 in the worst case. The algorithm makes two passes over
      * the history {@code List} (once over the previous history and once over the
@@ -150,7 +150,7 @@ public final class TetrisLandscape implements Paintable {
         }
 
         /*
-         * Initialize the bottom row of the replacement landscape.
+         * Initialize the bottom row of the replacement landscape. O(10)
          */
         final Set<Point> rl = new HashSet<>(LANDSCAPE_INITIAL_SIZE);
         rl.addAll(INITIAL_POINTS_CACHE);
