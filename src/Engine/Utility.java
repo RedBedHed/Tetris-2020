@@ -53,7 +53,7 @@ public final class Utility {
      */
     public static <T> List<T> shuffle(final T[] a){
         for(int i = 0; i < a.length; i++){
-            final int r = Utility.rgen.nextInt(7);
+            final int r = rgen.nextInt(7);
             final T t = a[i];
             a[i] = a[r];
             a[r] = t;
