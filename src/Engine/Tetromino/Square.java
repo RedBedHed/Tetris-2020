@@ -30,30 +30,6 @@ public class Square extends TetrisGraphic {
     }
 
     /**
-     * A factory method to produce a default {@code Square}.
-     *
-     * @param upperLeftCorner the upper left corner of this {@code Square}
-     * @param color the color of this {@code Square}
-     * @param colorCode an identifier for use in recoloring
-     * @return a new {@code Square}
-     */
-    public static Square defaultInstance(final Point upperLeftCorner,
-                                         final Color color,
-                                         final int colorCode){
-        return new Square(upperLeftCorner, color, colorCode);
-    }
-
-    /**
-     * A factory method to produce a {@code Ghost Square}.
-     *
-     * @param square square the square to be copied
-     * @return a new {@code GhostSquare}
-     */
-    public static Square ghostInstance(final Square square){
-        return new GhostSquare(square);
-    }
-
-    /**
      * @inheritDoc
      */
     @Override
@@ -73,29 +49,35 @@ public class Square extends TetrisGraphic {
     }
 
     /**
-     * Ghost Square
+     * A factory method to produce a default {@code Square}.
      *
-     * <p>
-     * A translucent square.
-     *
-     * @author Ellie Moore
-     * @version 08.05.2020
+     * @param upperLeftCorner the upper left corner of this {@code Square}
+     * @param color the color of this {@code Square}
+     * @param colorCode an identifier for use in recoloring
+     * @return a new {@code Square}
      */
+    public static Square defaultInstance(final Point upperLeftCorner,
+                                         final Color color,
+                                         final int colorCode){
+        return new Square(upperLeftCorner, color, colorCode);
+    }
+
+    /**
+     * A factory method to produce a translucent {@code Ghost Square}.
+     *
+     * @param square square the square to be copied
+     * @return a new {@code GhostSquare}
+     */
+    public static Square ghostInstance(final Square square){
+        return new GhostSquare(square);
+    }
+
     private static final class GhostSquare extends Square {
 
-        /**
-         * A public constructor for {@code GhostSquare} which
-         * instantiates a translucent "copy" of the given {@code Square}
-         *
-         * @param square the square to be copied
-         */
         private GhostSquare(final Square square) {
             super(square.axis, square.color, square.colorCode);
         }
 
-        /**
-         * @inheritDoc
-         */
         @Override
         public void paint(Graphics g){
             final float OPACITY = 0.4f;
