@@ -170,7 +170,7 @@ public final class TetrisLandscape implements Paintable {
                         s.getAxis().x, s.getAxis().y +
                         (lineCount << Utility.LOG_2_SQUARE_LENGTH)
                 );
-                rr.add(new Square(p, s.getColor(), s.getColorCode()));
+                rr.add(Square.defaultInstance(p, s.getColor(), s.getColorCode()));
                 rl.add(p);
             }
             rh.set(i, Collections.unmodifiableList(rr));
@@ -211,7 +211,7 @@ public final class TetrisLandscape implements Paintable {
         for(final List<Square> ls: pl.history) {
             if(ls.isEmpty()) break;
             final List<Square> rs = new ArrayList<>();
-            for(final Square s: ls) rs.add(new Square(
+            for(final Square s: ls) rs.add(Square.defaultInstance(
                     s.getAxis(), p.getColor(s.getColorCode()), s.getColorCode()
             ));
             rh.add(Collections.unmodifiableList(rs));

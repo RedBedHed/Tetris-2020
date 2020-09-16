@@ -10,7 +10,8 @@ import java.awt.geom.RoundRectangle2D;
  * Square
  *
  * <p>
- * The basic unit of a {@code Tetromino}.
+ * The basic unit of a {@code Tetromino}. Although this class is not final,
+ * its constructor is private. Therefore, this class may not be subclassed externally.
  *
  * @author Ellie Moore
  * @version 08.06.2020
@@ -24,8 +25,32 @@ public class Square extends TetrisGraphic {
      * @param color the color of this {@code Square}
      * @param colorCode an identifier for use in recoloring
      */
-    public Square(final Point upperLeftCorner, final Color color, final int colorCode) {
+    private Square(final Point upperLeftCorner, final Color color, final int colorCode) {
         super(upperLeftCorner, color, colorCode);
+    }
+
+    /**
+     * A factory method to produce a default {@code Square}.
+     *
+     * @param upperLeftCorner the upper left corner of this {@code Square}
+     * @param color the color of this {@code Square}
+     * @param colorCode an identifier for use in recoloring
+     * @return a new {@code Square}
+     */
+    public static Square defaultInstance(final Point upperLeftCorner,
+                                         final Color color,
+                                         final int colorCode){
+        return new Square(upperLeftCorner, color, colorCode);
+    }
+
+    /**
+     * A factory method to produce a {@code Ghost Square}.
+     *
+     * @param square square the square to be copied
+     * @return a new {@code GhostSquare}
+     */
+    public static Square ghostInstance(final Square square){
+        return new GhostSquare(square);
     }
 
     /**
@@ -45,6 +70,51 @@ public class Square extends TetrisGraphic {
                 axis.x, axis.y, Utility.INNER_SQUARE_LENGTH, Utility.INNER_SQUARE_LENGTH,
                 Utility.SQUARE_BUFFER, Utility.SQUARE_BUFFER
         ));
+    }
+
+    /**
+     * Ghost Square
+     *
+     * <p>
+     * A translucent square.
+     *
+     * @author Ellie Moore
+     * @version 08.05.2020
+     */
+    private static final class GhostSquare extends Square {
+
+        /**
+         * A public constructor for {@code GhostSquare} which
+         * instantiates a translucent "copy" of the given {@code Square}
+         *
+         * @param square the square to be copied
+         */
+        private GhostSquare(final Square square) {
+            super(square.axis, square.color, square.colorCode);
+        }
+
+        /**
+         * @inheritDoc
+         */
+        @Override
+        public void paint(Graphics g){
+            final float OPACITY = 0.4f;
+            Graphics2D g2 = (Graphics2D) g;
+            g2.setComposite(AlphaComposite.SrcOver.derive(OPACITY));
+            g2.setPaint(color);
+            g2.fill(new RoundRectangle2D.Double(
+                    axis.x + Utility.SQUARE_BUFFER, axis.y + Utility.SQUARE_BUFFER,
+                    Utility.OUTER_SQUARE_LENGTH, Utility.OUTER_SQUARE_LENGTH,
+                    Utility.SQUARE_BUFFER, Utility.SQUARE_BUFFER
+            ));
+            g2.setPaint(Color.DARK_GRAY);
+            g2.fill(new RoundRectangle2D.Double(
+                    axis.x, axis.y, Utility.INNER_SQUARE_LENGTH, Utility.INNER_SQUARE_LENGTH,
+                    Utility.SQUARE_BUFFER, Utility.SQUARE_BUFFER
+            ));
+            g2.setComposite(AlphaComposite.SrcOver);
+        }
+
     }
 
 }

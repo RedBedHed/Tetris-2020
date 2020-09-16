@@ -239,7 +239,7 @@ public class Tetromino extends TetrisGraphic {
 
             private static List<Square> fadedSquares(final List<Square> baseSquares){
                 final List<Square> replacementBaseSquares = new ArrayList<>();
-                for(final Square s: baseSquares) replacementBaseSquares.add(new GhostSquare(s));
+                for(final Square s: baseSquares) replacementBaseSquares.add(Square.ghostInstance(s));
                 return Collections.unmodifiableList(replacementBaseSquares);
             }
 
@@ -362,10 +362,10 @@ public class Tetromino extends TetrisGraphic {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 return List.of(
-                        new Square(axis, color, colorCode),
-                        new Square(new Point(axis.x - Utility.SQUARE_LENGTH, axis.y), color, colorCode),
-                        new Square(new Point(axis.x, axis.y - Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(
+                        Square.defaultInstance(axis, color, colorCode),
+                        Square.defaultInstance(new Point(axis.x - Utility.SQUARE_LENGTH, axis.y), color, colorCode),
+                        Square.defaultInstance(new Point(axis.x, axis.y - Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(
                                 axis.x - Utility.SQUARE_LENGTH, axis.y - Utility.SQUARE_LENGTH
                         ), color, colorCode)
                 );
@@ -405,30 +405,36 @@ public class Tetromino extends TetrisGraphic {
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int cly = axis.y - Utility.SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(axis.x, cly), color, colorCode),
-                        new Square(new Point(axis.x + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(axis.x - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(axis.x - Utility.DOUBLE_SQUARE_LENGTH, cly), color, colorCode)
+                        Square.defaultInstance(new Point(axis.x, cly), color, colorCode),
+                        Square.defaultInstance(new Point(axis.x + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(axis.x - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(
+                                axis.x - Utility.DOUBLE_SQUARE_LENGTH, cly), color, colorCode
+                        )
                 );
             }
         }).with(new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 return List.of(
-                        new Square(axis, color, colorCode),
-                        new Square(new Point(axis.x, axis.y - Utility.DOUBLE_SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(axis.x, axis.y - Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(axis.x, axis.y + Utility.SQUARE_LENGTH), color, colorCode)
+                        Square.defaultInstance(axis, color, colorCode),
+                        Square.defaultInstance(
+                                new Point(axis.x, axis.y - Utility.DOUBLE_SQUARE_LENGTH), color, colorCode
+                        ),
+                        Square.defaultInstance(new Point(axis.x, axis.y - Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(axis.x, axis.y + Utility.SQUARE_LENGTH), color, colorCode)
                 );
             }
         }).with(new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 return List.of(
-                        new Square(axis, color, colorCode),
-                        new Square(new Point(axis.x + Utility.SQUARE_LENGTH, axis.y), color, colorCode),
-                        new Square(new Point(axis.x - Utility.SQUARE_LENGTH, axis.y), color, colorCode),
-                        new Square(new Point(axis.x - Utility.DOUBLE_SQUARE_LENGTH, axis.y), color, colorCode)
+                        Square.defaultInstance(axis, color, colorCode),
+                        Square.defaultInstance(new Point(axis.x + Utility.SQUARE_LENGTH, axis.y), color, colorCode),
+                        Square.defaultInstance(new Point(axis.x - Utility.SQUARE_LENGTH, axis.y), color, colorCode),
+                        Square.defaultInstance(
+                                new Point(axis.x - Utility.DOUBLE_SQUARE_LENGTH, axis.y), color, colorCode
+                        )
                 );
             }
         }).with(new Assembler() {
@@ -436,10 +442,12 @@ public class Tetromino extends TetrisGraphic {
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, axis.y), color, colorCode),
-                        new Square(new Point(clx, axis.y - Utility.DOUBLE_SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(clx, axis.y - Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(clx, axis.y + Utility.SQUARE_LENGTH), color, colorCode)
+                        Square.defaultInstance(new Point(clx, axis.y), color, colorCode),
+                        Square.defaultInstance(
+                                new Point(clx, axis.y - Utility.DOUBLE_SQUARE_LENGTH), color, colorCode
+                        ),
+                        Square.defaultInstance(new Point(clx, axis.y - Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(clx, axis.y + Utility.SQUARE_LENGTH), color, colorCode)
                 );
             }
         }))) {
@@ -459,12 +467,12 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(
                                 clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
                         ),
-                        new Square(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
+                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
                 );
             }
         }).with(new Assembler() {
@@ -473,10 +481,10 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(
                         clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
                         )
                 );
@@ -487,10 +495,10 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(
                         clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
                         )
                 );
@@ -501,10 +509,10 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(
                                 clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
                         )
                 );
@@ -526,12 +534,12 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(
                                 clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
                         ),
-                        new Square(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
+                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
                 );
             }
         }).with(new Assembler() {
@@ -540,10 +548,10 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(
                                 clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
                         )
                 );
@@ -554,10 +562,10 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(
                                 clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
                         )
                 );
@@ -568,10 +576,10 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(
                                 clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
                         )
                 );
@@ -610,10 +618,10 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(
                                 clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
                         )
                 );
@@ -624,12 +632,12 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(
                                 clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
                         ),
-                        new Square(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode)
+                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode)
                 );
             }
         }).with(new Assembler() {
@@ -638,10 +646,10 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(
                                 clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
                         )
                 );
@@ -652,12 +660,12 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(
                                 clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
                         ),
-                        new Square(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
+                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
                 );
             }
         }))) {
@@ -677,10 +685,10 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
                 );
             }
         }).with(new Assembler() {
@@ -689,10 +697,10 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
                 );
             }
         }).with(new Assembler() {
@@ -701,10 +709,10 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
                 );
             }
         }).with(new Assembler() {
@@ -713,10 +721,10 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
                 );
             }
         }))) {
@@ -736,12 +744,12 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(
                                 clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
                         ),
-                        new Square(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
+                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
                 );
             }
         }).with(new Assembler() {
@@ -750,10 +758,10 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(
                                 clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
                         )
                 );
@@ -764,10 +772,10 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                        new Square(new Point(
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                        Square.defaultInstance(new Point(
                                 clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
                         )
                 );
@@ -778,12 +786,12 @@ public class Tetromino extends TetrisGraphic {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
                 final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
                 return List.of(
-                        new Square(new Point(clx, cly), color, colorCode),
-                        new Square(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        new Square(new Point(
+                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                        Square.defaultInstance(new Point(
                                 clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
                         ),
-                        new Square(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode)
+                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode)
                 );
             }
         }))) {
