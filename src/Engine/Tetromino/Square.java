@@ -10,8 +10,9 @@ import java.awt.geom.RoundRectangle2D;
  * Square
  *
  * <p>
- * The basic unit of a {@code Tetromino}. Although this class is not final,
- * its constructor is private. Therefore, this class may not be subclassed externally.
+ * A {@code Square} is the basic unit of a {@code Tetromino}. Although this class
+ * is not final, its constructor is private. Therefore, this class may not be subclassed
+ * externally.
  *
  * @author Ellie Moore
  * @version 08.06.2020
