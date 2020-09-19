@@ -31,7 +31,7 @@ public final class Game {
     /**
      * The color of this {@code Game}'s {@code LineupPanel} component.
      */
-    public static final Color LINUP_PANEL_COLOR = new Color(30, 30, 30);
+    public static final Color LINEUP_PANEL_COLOR = new Color(30, 30, 30);
 
     /**
      * The color of this {@code Game}'s {@code HoldPanel} component.
@@ -180,7 +180,7 @@ public final class Game {
         @Override
         public void paintComponent(final Graphics g){
             Graphics2D g2 = (Graphics2D) g;
-            g2.setColor(LINUP_PANEL_COLOR);
+            g2.setColor(LINEUP_PANEL_COLOR);
             g2.fillRect(0,0, 144, 650);
             for(Tetromino t: tetLineup) t.paint(g);
         }
