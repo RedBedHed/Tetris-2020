@@ -20,7 +20,7 @@ import java.awt.geom.RoundRectangle2D;
 public class Square extends TetrisGraphic {
 
     /**
-     * A public constructor for a {@code Square}.
+     * A private constructor for a {@code Square}.
      *
      * @param upperLeftCorner the upper left corner of this {@code Square}
      * @param color the color of this {@code Square}
