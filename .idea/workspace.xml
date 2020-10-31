@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Tetris:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="d23fecac-766b-4d30-b4f1-4983fd40688c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +37,11 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../algo" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager" selected="Application.Game">
     <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -103,8 +112,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Game" />
-        <item itemvalue="Application.GridPanel" />
         <item itemvalue="Application.Tetromino" />
+        <item itemvalue="Application.GridPanel" />
         <item itemvalue="Application.TetrisLandscape" />
         <item itemvalue="Application.Utility" />
       </list>
@@ -128,6 +137,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1597093885029" />
+    <state x="690" y="306" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1603066368689">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="306" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603066368689" />
     <state x="604" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1600058489796">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -136,38 +149,42 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1597200739590" />
-    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1600462901255">
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1604180564210">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1600462901255" />
-    <state width="1877" height="139" key="GridCell.Tab.0.bottom" timestamp="1600462902850">
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1604180564210" />
+    <state width="1860" height="137" key="GridCell.Tab.0.bottom" timestamp="1604180565658">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="139" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600462902850" />
-    <state width="1877" height="139" key="GridCell.Tab.0.center" timestamp="1600462902850">
+    <state width="1860" height="137" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604180565658" />
+    <state width="1860" height="137" key="GridCell.Tab.0.center" timestamp="1604180565657">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="139" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600462902850" />
-    <state width="1877" height="139" key="GridCell.Tab.0.left" timestamp="1600462902850">
+    <state width="1860" height="137" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604180565657" />
+    <state width="1860" height="137" key="GridCell.Tab.0.left" timestamp="1604180565657">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="139" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600462902850" />
-    <state width="1877" height="139" key="GridCell.Tab.0.right" timestamp="1600462902850">
+    <state width="1860" height="137" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604180565657" />
+    <state width="1860" height="137" key="GridCell.Tab.0.right" timestamp="1604180565658">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="139" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600462902850" />
+    <state width="1860" height="137" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604180565658" />
+    <state x="440" y="97" key="SettingsEditor" timestamp="1603147105541">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="97" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603147105541" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1596342245213">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1596342245213" />
-    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1600385069923">
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1602365019098">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600385069923" />
-    <state x="664" y="413" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1596763214193">
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602365019098" />
+    <state x="664" y="413" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1603147092269">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="664" y="413" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040@0.0.1920.1040" timestamp="1596763214193" />
+    <state x="664" y="413" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040@0.0.1920.1040" timestamp="1603147092269" />
     <state x="342" y="140" key="new project wizard" timestamp="1600410345871">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

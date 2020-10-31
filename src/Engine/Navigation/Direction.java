@@ -1,6 +1,7 @@
 package Engine.Navigation;
 
 import Engine.Utility;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Direction
@@ -18,7 +19,7 @@ public enum Direction {
          * @inheritDoc
          */
         @Override
-        public Point traverse(Point point) {
+        public Point traverse(@NotNull final Point point) {
             return new Point(point.x, point.y + Utility.SQUARE_LENGTH);
         }
     },
@@ -27,7 +28,7 @@ public enum Direction {
          * @inheritDoc
          */
         @Override
-        public Point traverse(Point point) {
+        public Point traverse(@NotNull final Point point) {
             return new Point(point.x - Utility.SQUARE_LENGTH, point.y);
         }
     },
@@ -36,7 +37,7 @@ public enum Direction {
          * @inheritDoc
          */
         @Override
-        public Point traverse(Point point) {
+        public Point traverse(@NotNull final Point point) {
             return new Point(point.x + Utility.SQUARE_LENGTH, point.y);
         }
     };

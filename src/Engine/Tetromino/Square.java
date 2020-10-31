@@ -2,6 +2,7 @@ package Engine.Tetromino;
 
 import Engine.Navigation.Point;
 import Engine.Utility;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
@@ -26,7 +27,9 @@ public class Square extends TetrisGraphic {
      * @param color the color of this {@code Square}
      * @param colorCode an identifier for use in recoloring
      */
-    private Square(final Point upperLeftCorner, final Color color, final int colorCode) {
+    private Square(@NotNull final Point upperLeftCorner,
+                   @NotNull final Color color,
+                   final int colorCode) {
         super(upperLeftCorner, color, colorCode);
     }
 
@@ -34,7 +37,7 @@ public class Square extends TetrisGraphic {
      * @inheritDoc
      */
     @Override
-    public void paint(Graphics g){
+    public void paint(@NotNull final Graphics g){
         Graphics2D g2 = (Graphics2D) g;
         g2.setPaint(Color.BLACK);
         g2.fill(new RoundRectangle2D.Double(
@@ -57,8 +60,8 @@ public class Square extends TetrisGraphic {
      * @param colorCode an identifier for use in recoloring
      * @return a new {@code Square}
      */
-    public static Square defaultInstance(final Point upperLeftCorner,
-                                         final Color color,
+    public static Square defaultInstance(@NotNull final Point upperLeftCorner,
+                                         @NotNull final Color color,
                                          final int colorCode){
         return new Square(upperLeftCorner, color, colorCode);
     }
@@ -69,18 +72,18 @@ public class Square extends TetrisGraphic {
      * @param square square the square to be copied
      * @return a new {@code GhostSquare}
      */
-    public static Square ghostInstance(final Square square){
+    public static Square ghostInstance(@NotNull final Square square){
         return new GhostSquare(square);
     }
 
     private static final class GhostSquare extends Square {
 
-        private GhostSquare(final Square square) {
+        private GhostSquare(@NotNull final Square square) {
             super(square.axis, square.color, square.colorCode);
         }
 
         @Override
-        public void paint(Graphics g){
+        public void paint(@NotNull final Graphics g){
             final float OPACITY = 0.4f;
             Graphics2D g2 = (Graphics2D) g;
             g2.setComposite(AlphaComposite.SrcOver.derive(OPACITY));

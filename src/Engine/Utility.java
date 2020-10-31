@@ -1,5 +1,6 @@
 package Engine;
 
+import java.lang.annotation.*;
 import java.util.*;
 
 /**
@@ -39,7 +40,7 @@ public final class Utility {
      * @param <T> the type
      * @return a synchronized, unmodifiable {@code List}
      */
-    public static <T> List<T> lockedList(final List<T> list){
+    public static <T> List<T> lockedList(@NotNull final List<T> list){
         return Collections.synchronizedList(Collections.unmodifiableList(list));
     }
 
@@ -51,7 +52,7 @@ public final class Utility {
      * @param <T> the type
      * @return a synchronized and unmodifiable {@code List}
      */
-    public static <T> List<T> shuffle(final T[] a){
+    public static <T> List<T> shuffle(@NotNull final T[] a){
         for(int i = 0; i < a.length; i++){
             final int r = rgen.nextInt(7);
             final T t = a[i];
@@ -100,6 +101,15 @@ public final class Utility {
             return this;
         }
 
+    }
+
+    @Documented
+    @Retention(RetentionPolicy.CLASS)
+    @Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.LOCAL_VARIABLE, ElementType.TYPE_USE})
+    public @interface NotNull {
+        String value() default "";
+
+        Class<? extends Exception> exception() default Exception.class;
     }
 
 }

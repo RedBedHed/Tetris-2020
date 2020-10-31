@@ -3,6 +3,8 @@ package Engine.Tetromino;
 import Engine.Navigation.Point;
 import GUI.Paintable;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.*;
 
 /**
@@ -19,11 +21,13 @@ public abstract class TetrisGraphic implements Paintable {
     /**
      * A reference location to orient this {@code Tetris Graphic}.
      */
+    @NotNull
     protected final Point axis;
 
     /**
      * The color of this {@code tetrisGraphic}.
      */
+    @NotNull
     protected final Color color;
 
     /**
@@ -39,7 +43,7 @@ public abstract class TetrisGraphic implements Paintable {
      * @param color the color of this {@code tetrisGraphic}
      * @param colorCode an identifier for use in recoloring
      */
-    protected TetrisGraphic(final Point p, final Color color, final int colorCode){
+    protected TetrisGraphic(@NotNull final Point p, @NotNull final Color color, final int colorCode){
         this.axis = p;
         this.color = color;
         this.colorCode = colorCode;

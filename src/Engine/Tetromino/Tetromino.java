@@ -4,6 +4,8 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
+import org.jetbrains.annotations.NotNull;
+
 import Engine.*;
 import Engine.Navigation.Point;
 import Engine.Utility.ConciseArrayList;
@@ -50,16 +52,19 @@ public class Tetromino extends TetrisGraphic {
     /**
      * The {@code Square}s that constitute this {@code Tetromino}.
      */
+    @NotNull
     private final List<Square> baseSquares;
 
     /**
      * The {@code Orientation} of this {@code Tetromino}.
      */
+    @NotNull
     private final Orientation orientation;
 
     /**
      * The {@code Shape} of this {@code Tetromino}.
      */
+    @NotNull
     private final Shape shape;
 
     /**
@@ -78,10 +83,10 @@ public class Tetromino extends TetrisGraphic {
      * @param colorCode an identifier for use in recoloring
      * @param depth how many lines this {@code Tetromino} has fallen
      */
-    private Tetromino(final Point axis,
-                      final Shape shape,
-                      final Orientation orientation,
-                      final Color color,
+    private Tetromino(@NotNull final Point axis,
+                      @NotNull final Shape shape,
+                      @NotNull final Orientation orientation,
+                      @NotNull final Color color,
                       final int colorCode,
                       final int depth){
         super(axis, color, colorCode);
@@ -95,7 +100,7 @@ public class Tetromino extends TetrisGraphic {
 
     /**
      * A private, secondary constructor for a {@code Tetromino} intended
-     * for internal subclass use.
+     * for internal subclass and {@code TetrominoFactory} use.
      *
      * @param axis the axis of this {@code Tetromino}
      * @param baseSquares the squares that form this {@code Tetromino}
@@ -105,11 +110,11 @@ public class Tetromino extends TetrisGraphic {
      * @param colorCode an identifier for use in recoloring
      * @param depth how many lines this {@code Tetromino} has fallen
      */
-    private Tetromino(final Point axis,
-                      final List<Square> baseSquares,
-                      final Shape shape,
-                      final Orientation orientation,
-                      final Color color,
+    private Tetromino(@NotNull final Point axis,
+                      @NotNull final List<Square> baseSquares,
+                      @NotNull final Shape shape,
+                      @NotNull final Orientation orientation,
+                      @NotNull final Color color,
                       final int colorCode,
                       final int depth){
         super(axis, color, colorCode);
@@ -155,7 +160,7 @@ public class Tetromino extends TetrisGraphic {
          *
          * @return a shuffled {@code List} of all seven {@code Tetromino}s
          */
-        public static List<Tetromino> generateLineup(final Palette palette) {
+        public static List<Tetromino> generateLineup(@NotNull final Palette palette) {
             final Orientation o = Orientation.FIRST;
             return Utility.shuffle(new Tetromino[]{
                     new Tetromino(Shape.I.getSpawnPoint(), Shape.I, o, genColor(palette), 0, 1),
@@ -206,7 +211,7 @@ public class Tetromino extends TetrisGraphic {
          * @param d the {@code Direction} to be used
          * @return a {@code Tetromino} one {@code Square} away from the original
          */
-        public static Tetromino slidingInstance(final Tetromino t, final Direction d) {
+        public static Tetromino slidingInstance(final Tetromino t, @NotNull final Direction d) {
             if (t == null || t.isNull()) return NULL_TET;
             return new Tetromino(
                     d.traverse(t.axis), t.shape, t.orientation, t.color, t.colorCode, t.depth
@@ -227,9 +232,10 @@ public class Tetromino extends TetrisGraphic {
 
         private static final class GhostTetromino extends Tetromino {
 
+            @NotNull
             private final Tetromino decoratedTetromino;
 
-            private GhostTetromino(final Tetromino t) {
+            private GhostTetromino(@NotNull final Tetromino t) {
                 super(
                         t.axis, fadedSquares(t.baseSquares), t.shape,
                         t.orientation, t.color, t.colorCode, t.depth
@@ -289,7 +295,7 @@ public class Tetromino extends TetrisGraphic {
          * @param t the {@code Tetromino} to be re-colored
          * @return a re-colored {@code Tetromino}.
          */
-        public static Tetromino reColor(final Tetromino t, final Palette p){
+        public static Tetromino reColor(final Tetromino t, @NotNull final Palette p){
             if (t == null || t.isNull()) return NULL_TET;
             return new Tetromino(
                     t.axis, t.shape, t.orientation, p.getColor(t.colorCode), t.colorCode, t.depth
@@ -302,7 +308,7 @@ public class Tetromino extends TetrisGraphic {
      * @inheritDoc
      */
     @Override
-    public final void paint(final Graphics g){
+    public final void paint(@NotNull final Graphics g){
         for(final Square s: baseSquares) s.paint(g);
     }
 
@@ -311,6 +317,7 @@ public class Tetromino extends TetrisGraphic {
      *
      * @return a {@code List} of the squares occupied by this {@code Tetromino}.
      */
+    @NotNull
     public final List<Square> getBaseSquares(){
         return baseSquares;
     }
@@ -485,7 +492,7 @@ public class Tetromino extends TetrisGraphic {
                         Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
                         Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
                         Square.defaultInstance(new Point(
-                        clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
+                            clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
                         )
                 );
             }
@@ -499,7 +506,7 @@ public class Tetromino extends TetrisGraphic {
                         Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
                         Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
                         Square.defaultInstance(new Point(
-                        clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
+                            clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
                         )
                 );
             }

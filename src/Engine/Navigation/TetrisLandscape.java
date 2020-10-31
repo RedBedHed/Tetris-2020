@@ -7,6 +7,8 @@ import Engine.Utility;
 import GUI.Paintable;
 import GUI.Palette;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.Graphics;
 import java.util.*;
 import java.util.List;
@@ -40,12 +42,14 @@ public final class TetrisLandscape implements Paintable {
      * to the landscape. There may be up to eight empty rows in this history.
      * These rows will not be considered during copying or painting operations.
      */
+    @NotNull
     private final List<List<Square>> history;
 
     /**
      * A {@code Set} of all {@code Point}s belonging to the landscape for use in
      * impact detection.
      */
+    @NotNull
     private final Set<Point> landscape;
 
     /**
@@ -60,8 +64,8 @@ public final class TetrisLandscape implements Paintable {
      * @param landscape a {@code Set} of {@code Point}s for impact detection
      * @param score an integer value to represent the score of this {@code TetrisLandscape}
      */
-    private TetrisLandscape(final List<List<Square>> history,
-                            final Set<Point> landscape,
+    private TetrisLandscape(@NotNull final List<List<Square>> history,
+                            @NotNull final Set<Point> landscape,
                             final int score){
         this.history = history;
         this.landscape = landscape;
@@ -115,8 +119,8 @@ public final class TetrisLandscape implements Paintable {
      * @param level the current level number
      * @return an updated {@code TetrisLandscape} object
      */
-    public static TetrisLandscape mergeOnContact(final TetrisLandscape pl,
-                                                 final Tetromino t,
+    public static TetrisLandscape mergeOnContact(@NotNull final TetrisLandscape pl,
+                                                 @NotNull final Tetromino t,
                                                  final int level) {
 
         /*
@@ -178,14 +182,13 @@ public final class TetrisLandscape implements Paintable {
 
         /*
          * Score the current landscape.
-         * O(N)
          */
         int score = t.getDepth() + pl.score;
         switch(lineCount){
             case 4: for(int k = 0; k <= level; k++) score += 1200; break;
-            case 3: for(int k = 0; k <= level; k++)  score += 300; break;
-            case 2: for(int k = 0; k <= level; k++)  score += 100; break;
-            case 1: for(int k = 0; k <= level; k++)   score += 40; break;
+            case 3: for(int k = 0; k <= level; k++) score +=  300; break;
+            case 2: for(int k = 0; k <= level; k++) score +=  100; break;
+            case 1: for(int k = 0; k <= level; k++) score +=   40; break;
         }
 
         /*
@@ -206,7 +209,8 @@ public final class TetrisLandscape implements Paintable {
      * @param p the palette to use in re-coloring
      * @return a re-colored instance of {@code TetrisLandscape}
      */
-    public static TetrisLandscape reColor(final TetrisLandscape pl, final Palette p){
+    public static TetrisLandscape reColor(@NotNull final TetrisLandscape pl,
+                                          @NotNull final Palette p){
         final List<List<Square>> rh = new ArrayList<>();
         for(final List<Square> ls: pl.history) {
             if(ls.isEmpty()) break;
@@ -225,7 +229,7 @@ public final class TetrisLandscape implements Paintable {
      * @param t the {@code Tetromino} to check for contact
      * @return whether or not the given {@code Tetromino} has contacted the landscape from above.
      */
-    public boolean imminentImpact(final Tetromino t){
+    public boolean imminentImpact(@NotNull final Tetromino t){
         for(final Square s: t.getBaseSquares())
             if (landscape.contains(new Point(s.getAxis().x, s.getAxis().y + Utility.SQUARE_LENGTH)))
                 return true;
@@ -238,7 +242,7 @@ public final class TetrisLandscape implements Paintable {
      * @param t the {@code Tetromino} to move
      * @return either a moved instance of {@code Tetromino} or the argument if unsuccessful
      */
-    public Tetromino tryMovingLeft(final Tetromino t){
+    public Tetromino tryMovingLeft(@NotNull final Tetromino t){
         final Tetromino r = TetrominoFactory.slidingInstance(t, Direction.LEFT);
         for(final Square s: r.getBaseSquares())
             if(landscape.contains(s.getAxis()) || s.getAxis().x <= LEFT_BOUNDARY)
@@ -252,7 +256,7 @@ public final class TetrisLandscape implements Paintable {
      * @param t the {@code Tetromino} to move
      * @return either a moved instance of {@code Tetromino} or the argument if unsuccessful
      */
-    public Tetromino tryMovingRight(final Tetromino t){
+    public Tetromino tryMovingRight(@NotNull final Tetromino t){
         final Tetromino r = TetrominoFactory.slidingInstance(t, Direction.RIGHT);
         for(final Square s: r.getBaseSquares())
             if(landscape.contains(s.getAxis()) || s.getAxis().x >= RIGHT_BOUNDARY)
@@ -266,7 +270,7 @@ public final class TetrisLandscape implements Paintable {
      * @param t the {@code Tetromino} to move
      * @return either a moved instance of {@code Tetromino} or the argument if unsuccessful
      */
-    public Tetromino tryFalling(final Tetromino t){
+    public Tetromino tryFalling(@NotNull final Tetromino t){
         final Tetromino r = TetrominoFactory.fallingInstance(t);
         for(final Square s: r.getBaseSquares())
             if(landscape.contains(s.getAxis()))
@@ -280,7 +284,7 @@ public final class TetrisLandscape implements Paintable {
      * @param t the {@code Tetromino} to rotate
      * @return either a rotated {@code Tetromino} or the argument if rotation is unsuccessful
      */
-    public Tetromino tryRotation(final Tetromino t){
+    public Tetromino tryRotation(@NotNull final Tetromino t){
         final Tetromino r = TetrominoFactory.rotatingInstance(t);
         for(final Square s: r.getBaseSquares()) {
             if (landscape.contains(s.getAxis()) || s.getAxis().x < 0 || s.getAxis().x >= Utility.GRID_WIDTH)
@@ -296,7 +300,7 @@ public final class TetrisLandscape implements Paintable {
      * @param t the {@code Tetromino} to check
      * @return whether or not the given {@code Tetromino} lies at a {@code Point} within the landscape
      */
-    public boolean contains(final Tetromino t){
+    public boolean contains(@NotNull final Tetromino t){
         for(final Square s: t.getBaseSquares()) if(landscape.contains(s.getAxis())) return true;
         return false;
     }
@@ -314,7 +318,7 @@ public final class TetrisLandscape implements Paintable {
      * @inheritDoc
      */
     @Override
-    public void paint(Graphics g){
+    public void paint(@NotNull final Graphics g){
         for(final List<Square> ls: history) {
             if(ls.isEmpty()) break;
             for(final Square s: ls) {
