@@ -97,12 +97,21 @@ public final class Game {
         gameFrame.add(gamePanel, BorderLayout.CENTER);
         gameFrame.add(lineupPanel, BorderLayout.EAST);
         gameFrame.add(holdPanel, BorderLayout.WEST);
+        //gameFrame.setJMenuBar(makeMenu());
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     //Show.
     public static void main(String[] args){
         Game.INSTANCE.gameFrame.setVisible(true);
+    }
+
+    public static JMenuBar makeMenu(){
+        final JMenuBar bar = new JMenuBar();
+        final JMenu menu = new JMenu();
+        menu.add(new JMenuItem("Exit"));
+        bar.add(menu);
+        return bar;
     }
 
     /**

@@ -37,7 +37,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../algo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -63,6 +63,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="GUI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Square" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Engine.Tetromino.Square" />
+      <module name="Tetris" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Engine.Tetromino.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -96,26 +109,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Utility" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Engine.Utility" />
-      <module name="Tetris" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="GUI.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Game" />
+        <item itemvalue="Application.Square" />
         <item itemvalue="Application.Tetromino" />
         <item itemvalue="Application.GridPanel" />
         <item itemvalue="Application.TetrisLandscape" />
-        <item itemvalue="Application.Utility" />
       </list>
     </recent_temporary>
   </component>
@@ -133,14 +133,18 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1597093885029">
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1604646681626">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1597093885029" />
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1604646681626" />
     <state x="690" y="306" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1603066368689">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="306" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603066368689" />
+    <state x="790" y="233" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1604641868029">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="790" y="233" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604641868029" />
     <state x="604" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1600058489796">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -149,42 +153,42 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1597200739590" />
-    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1604180564210">
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1604734479231">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1604180564210" />
-    <state width="1860" height="137" key="GridCell.Tab.0.bottom" timestamp="1604180565658">
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1604734479231" />
+    <state width="1860" height="137" key="GridCell.Tab.0.bottom" timestamp="1604651732173">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1860" height="137" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604180565658" />
-    <state width="1860" height="137" key="GridCell.Tab.0.center" timestamp="1604180565657">
+    <state width="1860" height="137" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604651732173" />
+    <state width="1860" height="137" key="GridCell.Tab.0.center" timestamp="1604651732172">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1860" height="137" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604180565657" />
-    <state width="1860" height="137" key="GridCell.Tab.0.left" timestamp="1604180565657">
+    <state width="1860" height="137" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604651732172" />
+    <state width="1860" height="137" key="GridCell.Tab.0.left" timestamp="1604651732172">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1860" height="137" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604180565657" />
-    <state width="1860" height="137" key="GridCell.Tab.0.right" timestamp="1604180565658">
+    <state width="1860" height="137" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604651732172" />
+    <state width="1860" height="137" key="GridCell.Tab.0.right" timestamp="1604651732172">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1860" height="137" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604180565658" />
-    <state x="440" y="97" key="SettingsEditor" timestamp="1603147105541">
+    <state width="1860" height="137" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604651732172" />
+    <state x="440" y="97" key="SettingsEditor" timestamp="1604641996187">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="440" y="97" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603147105541" />
+    <state x="440" y="97" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1604641996187" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1596342245213">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1596342245213" />
-    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1602365019098">
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1604731741479">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602365019098" />
-    <state x="664" y="413" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1603147092269">
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604731741479" />
+    <state x="664" y="413" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1604641852709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="664" y="413" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040@0.0.1920.1040" timestamp="1603147092269" />
+    <state x="664" y="413" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040@0.0.1920.1040" timestamp="1604641852709" />
     <state x="342" y="140" key="new project wizard" timestamp="1600410345871">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -193,5 +197,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596769241598" />
+    <state x="623" y="231" width="672" height="678" key="search.everywhere.popup" timestamp="1604650800970">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="231" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1604650800970" />
   </component>
 </project>

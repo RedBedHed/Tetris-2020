@@ -321,9 +321,7 @@ public final class TetrisLandscape implements Paintable {
     public void paint(@NotNull final Graphics g){
         for(final List<Square> ls: history) {
             if(ls.isEmpty()) break;
-            for(final Square s: ls) {
-                s.paint(g);
-            }
+            for(final Square s: ls) s.paint(g);
         }
     }
 

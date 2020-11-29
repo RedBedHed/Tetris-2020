@@ -4,7 +4,7 @@ package Engine.Navigation;
  * Orientation
  *
  * <p>
- * An enumeration of the four possible orientations that a {@code Tetromino may possess}.
+ * An enumeration of the four possible orientations that a {@code Tetromino} may possess.
  *
  * @author Ellie Moore
  * @version 08.06.2020
