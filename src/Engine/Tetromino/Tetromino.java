@@ -407,7 +407,7 @@ public class Tetromino extends TetrisGraphic {
         /**
          * On-axis.
          */
-        I (Collections.unmodifiableList(new ConciseArrayList<Assembler>().with(new Assembler() {
+        I (List.of(new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int cly = axis.y - Utility.SQUARE_LENGTH;
@@ -420,7 +420,7 @@ public class Tetromino extends TetrisGraphic {
                         )
                 );
             }
-        }).with(new Assembler() {
+        }, new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 return List.of(
@@ -432,7 +432,7 @@ public class Tetromino extends TetrisGraphic {
                         Square.defaultInstance(new Point(axis.x, axis.y + Utility.SQUARE_LENGTH), color, colorCode)
                 );
             }
-        }).with(new Assembler() {
+        }, new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 return List.of(
@@ -444,7 +444,7 @@ public class Tetromino extends TetrisGraphic {
                         )
                 );
             }
-        }).with(new Assembler() {
+        }, new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.SQUARE_LENGTH;
@@ -457,7 +457,7 @@ public class Tetromino extends TetrisGraphic {
                         Square.defaultInstance(new Point(clx, axis.y + Utility.SQUARE_LENGTH), color, colorCode)
                 );
             }
-        }))) {
+        })) {
             /** @inheritDoc */
             @Override
             public Point getSpawnPoint(){
@@ -468,7 +468,7 @@ public class Tetromino extends TetrisGraphic {
         /**
          * Off-axis.
          */
-        J (Collections.unmodifiableList(new ConciseArrayList<Assembler>().with(new Assembler() {
+        J (List.of(new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -482,7 +482,7 @@ public class Tetromino extends TetrisGraphic {
                         Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
                 );
             }
-        }).with(new Assembler() {
+        }, new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -496,7 +496,7 @@ public class Tetromino extends TetrisGraphic {
                         )
                 );
             }
-        }).with(new Assembler() {
+        }, new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -510,7 +510,7 @@ public class Tetromino extends TetrisGraphic {
                         )
                 );
             }
-        }).with(new Assembler(){
+        }, new Assembler(){
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -524,7 +524,7 @@ public class Tetromino extends TetrisGraphic {
                         )
                 );
             }
-        }))) {
+        })) {
             /** @inheritDoc */
             @Override
             public Point getSpawnPoint(){
@@ -535,7 +535,7 @@ public class Tetromino extends TetrisGraphic {
         /**
          * Off-axis.
          */
-        L (Collections.unmodifiableList(new ConciseArrayList<Assembler>().with(new Assembler() {
+        L (List.of(new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -549,7 +549,7 @@ public class Tetromino extends TetrisGraphic {
                         Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
                 );
             }
-        }).with(new Assembler() {
+        }, new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -563,7 +563,7 @@ public class Tetromino extends TetrisGraphic {
                         )
                 );
             }
-        }).with(new Assembler() {
+        }, new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -577,7 +577,7 @@ public class Tetromino extends TetrisGraphic {
                         )
                 );
             }
-        }).with(new Assembler() {
+        }, new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -591,7 +591,7 @@ public class Tetromino extends TetrisGraphic {
                         )
                 );
             }
-        }))) {
+        })) {
             /** @inheritDoc */
             @Override
             public Point getSpawnPoint(){
@@ -602,12 +602,9 @@ public class Tetromino extends TetrisGraphic {
         /**
          * On-axis.
          */
-        O (Collections.unmodifiableList(
-                new ConciseArrayList<Assembler>()
-                .with(Assembler.O_ASSEMBLER)
-                .with(Assembler.O_ASSEMBLER)
-                .with(Assembler.O_ASSEMBLER)
-                .with(Assembler.O_ASSEMBLER)
+        O (List.of(
+                Assembler.O_ASSEMBLER, Assembler.O_ASSEMBLER,
+                Assembler.O_ASSEMBLER, Assembler.O_ASSEMBLER
         )) {
             /** @inheritDoc */
             @Override
@@ -619,7 +616,7 @@ public class Tetromino extends TetrisGraphic {
         /**
          * Off-axis.
          */
-        S (Collections.unmodifiableList(new ConciseArrayList<Assembler>().with(new Assembler() {
+        S (List.of(new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -633,7 +630,7 @@ public class Tetromino extends TetrisGraphic {
                         )
                 );
             }
-        }).with(new Assembler() {
+        }, new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -647,7 +644,7 @@ public class Tetromino extends TetrisGraphic {
                         Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode)
                 );
             }
-        }).with(new Assembler() {
+        }, new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -661,7 +658,7 @@ public class Tetromino extends TetrisGraphic {
                         )
                 );
             }
-        }).with(new Assembler(){
+        }, new Assembler(){
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -675,7 +672,7 @@ public class Tetromino extends TetrisGraphic {
                         Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
                 );
             }
-        }))) {
+        })) {
             /** @inheritDoc */
             @Override
             public Point getSpawnPoint(){
@@ -686,7 +683,7 @@ public class Tetromino extends TetrisGraphic {
         /**
          * Off-axis.
          */
-        T (Collections.unmodifiableList(new ConciseArrayList<Assembler>().with(new Assembler(){
+        T (List.of(new Assembler(){
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -698,7 +695,7 @@ public class Tetromino extends TetrisGraphic {
                         Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
                 );
             }
-        }).with(new Assembler() {
+        }, new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -710,7 +707,7 @@ public class Tetromino extends TetrisGraphic {
                         Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
                 );
             }
-        }).with(new Assembler() {
+        }, new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -722,7 +719,7 @@ public class Tetromino extends TetrisGraphic {
                         Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
                 );
             }
-        }).with(new Assembler() {
+        }, new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -734,7 +731,7 @@ public class Tetromino extends TetrisGraphic {
                         Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
                 );
             }
-        }))) {
+        })) {
             /** @inheritDoc */
             @Override
             public Point getSpawnPoint(){
@@ -745,7 +742,7 @@ public class Tetromino extends TetrisGraphic {
         /**
          * Off-axis.
          */
-        Z (Collections.unmodifiableList(new ConciseArrayList<Assembler>().with(new Assembler() {
+        Z (List.of(new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -759,7 +756,7 @@ public class Tetromino extends TetrisGraphic {
                         Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
                 );
             }
-        }).with(new Assembler() {
+        }, new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -773,7 +770,7 @@ public class Tetromino extends TetrisGraphic {
                         )
                 );
             }
-        }).with(new Assembler() {
+        }, new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -787,7 +784,7 @@ public class Tetromino extends TetrisGraphic {
                         )
                 );
             }
-        }).with(new Assembler() {
+        }, new Assembler() {
             @Override
             public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
                 final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
@@ -801,7 +798,7 @@ public class Tetromino extends TetrisGraphic {
                         Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode)
                 );
             }
-        }))) {
+        })) {
             /** @inheritDoc */
             @Override
             public Point getSpawnPoint(){
@@ -812,12 +809,10 @@ public class Tetromino extends TetrisGraphic {
         /**
          * A NULL shape for use in constructing a {@code NullTetromino}.
          */
-        NULL (Collections.unmodifiableList(
-                new ConciseArrayList<Assembler>()
-                .with(Assembler.NULL_ASSEMBLER)
-                .with(Assembler.NULL_ASSEMBLER)
-                .with(Assembler.NULL_ASSEMBLER)
-                .with(Assembler.NULL_ASSEMBLER))) {
+        NULL (List.of(
+                Assembler.NULL_ASSEMBLER, Assembler.NULL_ASSEMBLER,
+                Assembler.NULL_ASSEMBLER, Assembler.NULL_ASSEMBLER
+        )) {
             @Override
             public Point getSpawnPoint(){
                 return Point.NULL;

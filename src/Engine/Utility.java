@@ -75,32 +75,4 @@ public final class Utility {
         return count;
     }
 
-    /**
-     * Concise Array List
-     *
-     * @param <E> the element type
-     * @see java.util.ArrayList;
-     */
-    public static final class ConciseArrayList<E> extends ArrayList<E> {
-
-        /**
-         * A private constructor for a {@code ConciseArrayList}
-         */
-        public ConciseArrayList(){
-            super();
-        }
-
-        /**
-         * An "add" method that supports chaining.
-         *
-         * @param element the element to be added
-         * @return the instance
-         */
-        public ConciseArrayList<E> with(final E element){
-            add(element);
-            return this;
-        }
-
-    }
-
 }
