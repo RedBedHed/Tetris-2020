@@ -8,7 +8,6 @@ import org.jetbrains.annotations.NotNull;
 
 import Engine.*;
 import Engine.Navigation.Point;
-import Engine.Utility.ConciseArrayList;
 import GUI.Palette;
 import Engine.Navigation.Direction;
 import Engine.Navigation.Orientation;
