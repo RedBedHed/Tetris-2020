@@ -1,6 +1,5 @@
 package GUI;
 
-import Engine.Tetromino.Tetromino.TetrominoFactory;
 import Engine.Tetromino.Tetromino;
 import Engine.Utility;
 
@@ -159,6 +158,8 @@ public final class Game {
     private static final class LineupPanel extends JPanel {
 
         private static final int DISPLAY_X_COORDINATE = 72;
+        private static final int DISPLAY_Y_COORDINATE = -48;
+        private static final int DISPLAY_Y_OFFSET = 128;
 
         private List<Tetromino> tetLineup;
 
@@ -170,8 +171,8 @@ public final class Game {
 
         private void updateLineup(final List<Tetromino> lineup){
             final List<Tetromino> l = new ArrayList<>();
-            int i = -48;
-            for(final Tetromino t: lineup) l.add(TetrominoFactory.copyAt(DISPLAY_X_COORDINATE, i += 128, t));
+            int i = DISPLAY_Y_COORDINATE;
+            for(final Tetromino t: lineup) l.add(t.copyAt(DISPLAY_X_COORDINATE, i += 128));
             tetLineup = Utility.lockedList(l);
         }
 
@@ -199,6 +200,7 @@ public final class Game {
     private static final class HoldPanel extends JPanel {
 
         private static final int DISPLAY_X_COORDINATE = 72;
+        private static final int DISPLAY_Y_COORDINATE = 80;
 
         private Tetromino hold;
 
@@ -209,7 +211,7 @@ public final class Game {
         }
 
         private void updateHold(final Tetromino hold){
-            this.hold = TetrominoFactory.copyAt(DISPLAY_X_COORDINATE, 80, hold);
+            this.hold = hold.copyAt(DISPLAY_X_COORDINATE, DISPLAY_Y_COORDINATE);
         }
 
         private synchronized void update(final Tetromino hold){

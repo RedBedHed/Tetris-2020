@@ -90,4 +90,24 @@ public abstract class TetrisGraphic implements Paintable {
         return String.format("Axis: %s    Color: %s", axis, color);
     }
 
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public int hashCode(){
+        return axis.hashCode();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public boolean equals(Object other){
+        if(this == other) return true;
+        if(other == null) return false;
+        if(!(other instanceof TetrisGraphic)) return false;
+        TetrisGraphic cast = (TetrisGraphic) other;
+        return this.hashCode() == cast.hashCode();
+    }
+
 }

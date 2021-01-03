@@ -49,7 +49,6 @@ public class GridPanel extends JPanel {
     private TransitionStatus impactTransitionStatus;
     private TransitionStatus levelTransitionStatus;
     private GameStatus gameStatus;
-    private int startingHeight;
     private boolean held;
     private ButtonType buttonType;
     private int level;
@@ -117,7 +116,6 @@ public class GridPanel extends JPanel {
         levelTransitionUpdateCount = 0;
         scrollUpdateCount = 0;
         levelUpLimit = INITIAL_LEVEL_SCORE_LIMIT;
-        startingHeight = 0;
         level = 0;
         scrollUpdateLimit = INITIAL_SCROLL_UPDATE_LIMIT;
         held = false;
@@ -192,10 +190,10 @@ public class GridPanel extends JPanel {
         else if (keyCode == KeyEvent.VK_C) {
             if (!held && currentTet != TetrominoFactory.NULL_TET) {
                 if (tetHold == TetrominoFactory.NULL_TET) {
-                    tetHold = TetrominoFactory.respawn(currentTet);
+                    tetHold = currentTet.respawn();
                     transition();
                 } else {
-                    final Tetromino temp = TetrominoFactory.respawn(currentTet);
+                    final Tetromino temp = currentTet.respawn();
                     currentTet = tetHold;
                     tetHold = temp;
                     ghostTet = findGhost(currentTet);
@@ -213,13 +211,13 @@ public class GridPanel extends JPanel {
             if (levelTransitionUpdateCount >= 200) {
                 levelTransitionUpdateCount = 0;
                 palette = palette.next();
-                landscape = TetrisLandscape.reColor(landscape, palette);
+                landscape = landscape.reColor(palette);
                 final List<Tetromino> replacementLineup = new ArrayList<>();
-                for (Tetromino t : tetLineup) replacementLineup.add(TetrominoFactory.reColor(t, palette));
+                for (Tetromino t : tetLineup) replacementLineup.add(t.reColor(palette));
                 tetLineup = Utility.lockedList(replacementLineup);
-                currentTet = TetrominoFactory.reColor(currentTet, palette);
-                ghostTet = TetrominoFactory.ghostInstance(TetrominoFactory.reColor(ghostTet, palette));
-                tetHold = TetrominoFactory.reColor(tetHold, palette);
+                currentTet = currentTet.reColor(palette);
+                ghostTet = ghostTet.reColor(palette);
+                tetHold = tetHold.reColor(palette);
                 levelTransitionStatus = TransitionStatus.INACTIVE;
             }
         } else {
@@ -251,11 +249,11 @@ public class GridPanel extends JPanel {
                 scrollUpdateCount++;
                 if (scrollUpdateCount >= scrollUpdateLimit) {
                     scrollUpdateCount = 0;
-                    if (landscape.imminentImpact(currentTet)) {
+                    if (landscape.isImpactedBy(currentTet)) {
                         postImpactUpdate();
                         return;
                     } else {
-                        currentTet = TetrominoFactory.fallingInstance(currentTet);
+                        currentTet = currentTet.fall();
                         ghostTet = findGhost(currentTet);
                     }
                 }
@@ -265,7 +263,7 @@ public class GridPanel extends JPanel {
     }
 
     private synchronized void postImpactUpdate(){
-        landscape = TetrisLandscape.mergeOnContact(landscape, currentTet, level);
+        landscape = landscape.merge(currentTet, level);
         updatePanel();
         Game.INSTANCE.update(tetLineup, tetHold, level, landscape.getScore());
         impactTransitionStatus = TransitionStatus.ACTIVE;
@@ -325,10 +323,10 @@ public class GridPanel extends JPanel {
         if(currentTet.isNull()) return currentTet;
         int x = currentTet.getAxis().x;
         int y = currentTet.getAxis().y;
-        Tetromino ghost = TetrominoFactory.copyAt(x, y, currentTet);
-        while(!landscape.imminentImpact(ghost))
-            ghost = TetrominoFactory.fallingInstance(ghost);
-        return TetrominoFactory.ghostInstance(ghost);
+        Tetromino ghost = currentTet.copyAt(x, y);
+        while(!landscape.isImpactedBy(ghost))
+            ghost = ghost.fall();
+        return ghost.dematerialize();
     }
 
     private void transition(){

@@ -135,20 +135,51 @@ public class Tetromino extends TetrisGraphic {
         /**
          * A public, null-safe instance.
          */
-        public static final Tetromino NULL_TET = new NullTetromino();
-
-        private static final class NullTetromino extends Tetromino {
-
-            private NullTetromino() {
-                super(Point.NULL, Shape.NULL, Orientation.FIRST, Color.WHITE, -1, -1);
-            }
+        public static final Tetromino NULL_TET = new Tetromino(
+                Point.NULL, Shape.NULL, Orientation.FIRST, Color.WHITE, -1, -1
+        ){
 
             @Override
             public final boolean isNull(){
                 return true;
             }
 
-        }
+            @Override
+            public final Tetromino copyAt(final int x, final int y) {
+                return this;
+            }
+
+            @Override
+            public final Tetromino dematerialize() {
+                return this;
+            }
+
+            @Override
+            public final Tetromino rotate(){
+                return this;
+            }
+
+            @Override
+            public final Tetromino fall(){
+                return this;
+            }
+
+            @Override
+            public final Tetromino slide(final Direction d){
+                return this;
+            }
+
+            @Override
+            public final Tetromino respawn(){
+                return this;
+            }
+
+            @Override
+            public final Tetromino reColor(final Palette p){
+                return this;
+            }
+
+        };
 
         /** This class may not be instantiated. */
         private TetrominoFactory(){
@@ -177,130 +208,142 @@ public class Tetromino extends TetrisGraphic {
             return palette.getColor(Utility.rgen.nextInt(Palette.PALETTE_SIZE));
         }
 
-        /**
-         * A factory method to instantiate a {@code Tetromino} with a rotated {@code Orientation}.
-         *
-         * @param t the {@code Tetromino} to be rotated
-         * @return a rotated {@code Tetromino}
-         */
-        public static Tetromino rotatingInstance(final Tetromino t) {
-            if (t == null || t.isNull()) return NULL_TET;
-            final Orientation o = t.orientation.rotateClockwise();
-            return new Tetromino(t.axis, t.shape, o, t.color, t.colorCode, t.depth);
-        }
+    }
 
-        /**
-         * A factory method to instantiate a new {@code Tetromino} one square length below the
-         * argument.
-         *
-         * @param t the {@code Tetromino} to be moved
-         * @return a {@code Tetromino} one {@code Square} below the original
-         */
-        public static Tetromino fallingInstance(final Tetromino t) {
-            if (t == null || t.isNull()) return NULL_TET;
-            final Point p = Direction.DOWN.traverse(t.axis);
-            return new Tetromino(p, t.shape, t.orientation, t.color, t.colorCode, t.depth + 1);
-        }
+    /**
+     * A method to instantiate a copy of this {@code Tetromino} at the specified
+     * coordinates.
+     *
+     * @param x the x coordinate of the new {@code Tetromino}
+     * @param y the y coordinate of the new {@code Tetromino}
+     * @return a {@code Tetromino} at the specified coordinates or {@code NullTetromino} if
+     * the given coordinates lie beneath the x and y axes.
+     */
+    public Tetromino copyAt(final int x, final int y) {
+        if(x < 0 || y < 0) return this;
+        final Tetromino t = new Tetromino(
+                new Point(x, y), shape, orientation, color,
+                colorCode, (y >>> Utility.LOG_2_SQUARE_LENGTH) + 1
+        );
+        if(isGhost()) return t.dematerialize();
+        return t;
+    }
 
-        /**
-         * A factory method to instantiate a {@code Tetromino} with an updated location in the
-         * specified {@code Direction}.
-         *
-         * @param t the {@code Tetromino} to be moved
-         * @param d the {@code Direction} to be used
-         * @return a {@code Tetromino} one {@code Square} away from the original
-         */
-        public static Tetromino slidingInstance(final Tetromino t, @NotNull final Direction d) {
-            if (t == null || t.isNull()) return NULL_TET;
-            return new Tetromino(
-                    d.traverse(t.axis), t.shape, t.orientation, t.color, t.colorCode, t.depth
+    /**
+     * A method to instantiate a {@code GhostTetromino}, decorating this
+     * {@code Tetromino} with translucent {@code GhostSquare}s.
+     *
+     * @return a {@code GhostTetromino}
+     */
+    public Tetromino dematerialize() {
+        return new GhostTetromino(this);
+    }
+
+    private static final class GhostTetromino extends Tetromino {
+
+        @NotNull
+        private final Tetromino decoratedTetromino;
+
+        private GhostTetromino(@NotNull final Tetromino t) {
+            super(
+                    t.axis, fadedSquares(t.baseSquares), t.shape,
+                    t.orientation, t.color, t.colorCode, t.depth
             );
+            decoratedTetromino = t;
         }
 
-        /**
-         * A method to instantiate a {@code GhostTetromino}, decorating the given
-         * {@code Tetromino} with translucent {@code GhostSquare}s.
-         *
-         * @param t the tetromino to be decorated
-         * @return a {@code GhostTetromino}
-         */
-        public static Tetromino ghostInstance(final Tetromino t) {
-            if (t == null || t.isNull()) return NULL_TET;
-            return new GhostTetromino(t);
+        private static List<Square> fadedSquares(final List<Square> baseSquares){
+            final List<Square> replacementBaseSquares = new ArrayList<>();
+            for(final Square s: baseSquares) replacementBaseSquares.add(Square.ghostInstance(s));
+            return Collections.unmodifiableList(replacementBaseSquares);
         }
 
-        private static final class GhostTetromino extends Tetromino {
-
-            @NotNull
-            private final Tetromino decoratedTetromino;
-
-            private GhostTetromino(@NotNull final Tetromino t) {
-                super(
-                        t.axis, fadedSquares(t.baseSquares), t.shape,
-                        t.orientation, t.color, t.colorCode, t.depth
-                );
-                decoratedTetromino = t;
-            }
-
-            private static List<Square> fadedSquares(final List<Square> baseSquares){
-                final List<Square> replacementBaseSquares = new ArrayList<>();
-                for(final Square s: baseSquares) replacementBaseSquares.add(Square.ghostInstance(s));
-                return Collections.unmodifiableList(replacementBaseSquares);
-            }
-
-            @Override
-            public final Tetromino manifest(){
-                return decoratedTetromino;
-            }
-
+        @Override
+        public final Tetromino dematerialize() {
+            return this;
         }
 
-        /**
-         * A factory method to instantiate a copy of the given {@code Tetromino} at the specified
-         * coordinates.
-         *
-         * @param x the x coordinate of the new {@code Tetromino}
-         * @param y the y coordinate of the new {@code Tetromino}
-         * @param t the {@code Tetromino} to be copied
-         * @return a {@code Tetromino} at the specified coordinates or {@code NullTetromino} if
-         * the given coordinates lie beneath the x and y axes.
-         */
-        public static Tetromino copyAt(final int x, final int y, final Tetromino t){
-            if(x < 0 || y < 0 || t == null || t.isNull()) return NULL_TET;
-            return new Tetromino(
-                    new Point(x, y), t.shape, t.orientation, t.color,
-                    t.colorCode, (y >>> Utility.LOG_2_SQUARE_LENGTH) + 1
-            );
+        @Override
+        public final Tetromino manifest(){
+            return decoratedTetromino;
         }
 
-        /**
-         * A factory method to instantiate a copy of the given {@code Tetromino} at its spawn
-         * coordinates.
-         *
-         * @param t the {@code Tetromino} to be re-spawned
-         * @return a {@code Tetromino} at its spawn coordinates.
-         */
-        public static Tetromino respawn(final Tetromino t){
-            if (t == null || t.isNull()) return NULL_TET;
-            return new Tetromino(
-                    t.shape.getSpawnPoint(), t.shape, Orientation.FIRST, t.color, t.colorCode, 1
-            );
+        @Override
+        public final boolean isGhost(){
+            return true;
         }
 
-        /**
-         * A factory method to instantiate a copy of the given {@code Tetromino} with a color from the
-         * given {@code palette} that matches the original color code.
-         *
-         * @param t the {@code Tetromino} to be re-colored
-         * @return a re-colored {@code Tetromino}.
-         */
-        public static Tetromino reColor(final Tetromino t, @NotNull final Palette p){
-            if (t == null || t.isNull()) return NULL_TET;
-            return new Tetromino(
-                    t.axis, t.shape, t.orientation, p.getColor(t.colorCode), t.colorCode, t.depth
-            );
-        }
+    }
 
+    /**
+     * A factory method to instantiate a copy of this {@code Tetromino} with a rotated
+     * {@code Orientation}.
+     *
+     * @return a rotated {@code Tetromino}
+     */
+    public Tetromino rotate() {
+        final Tetromino t = new Tetromino(
+                axis, shape, orientation.rotateClockwise(), color, colorCode, depth
+        );
+        if(isGhost()) return t.dematerialize();
+        return t;
+    }
+
+    /**
+     * A method to instantiate a copy one square-length below this {@code Tetromino}
+     *
+     * @return a {@code Tetromino} one {@code Square} below this {@code Tetromino}
+     */
+    public Tetromino fall() {
+        final Tetromino t = new Tetromino(
+                Direction.DOWN.traverse(axis), shape, orientation,
+                color, colorCode, depth + 1
+        );
+        if(isGhost()) return t.dematerialize();
+        return t;
+    }
+
+    /**
+     * A method to instantiate a copy one square-length away from this {@code Tetromino}
+     * in the specified {@code Direction}.
+     *
+     * @param d the {@code Direction} to be used
+     * @return a {@code Tetromino} one {@code Square} away from the original
+     */
+    public Tetromino slide(@NotNull final Direction d) {
+        final Tetromino t = new Tetromino(
+                d.traverse(axis), shape, orientation, color, colorCode, depth
+        );
+        if(isGhost()) return t.dematerialize();
+        return t;
+    }
+
+    /**
+     * A method to instantiate a copy of the this {@code Tetromino} at its spawn
+     * coordinates.
+     *
+     * @return a {@code Tetromino} at its spawn coordinates.
+     */
+    public Tetromino respawn(){
+        final Tetromino t = new Tetromino(
+                shape.getSpawnPoint(), shape, Orientation.FIRST, color, colorCode, 1
+        );
+        if(isGhost()) return t.dematerialize();
+        return t;
+    }
+
+    /**
+     * A method to instantiate a copy of this {@code Tetromino} with a color from the
+     * given {@code palette} that according to the original color code.
+     *
+     * @return a re-colored {@code Tetromino}.
+     */
+    public Tetromino reColor(@NotNull final Palette p){
+        final Tetromino t = new Tetromino(
+                axis, shape, orientation, p.getColor(colorCode), colorCode, depth
+        );
+        if(isGhost()) return t.dematerialize();
+        return t;
     }
 
     /**
@@ -328,6 +371,16 @@ public class Tetromino extends TetrisGraphic {
      * @return whether or not this {@code Tetromino} is an instance of {@code NullTetromino}.
      */
     public boolean isNull(){
+        return false;
+    }
+
+    /**
+     * A method to indicate whether or not this {@code Tetromino} is an instance of
+     * {@code GhostTetromino}.
+     *
+     * @return whether or not this {@code Tetromino} is an instance of {@code GhostTetromino}.
+     */
+    public boolean isGhost(){
         return false;
     }
 

@@ -26,6 +26,7 @@ public final class Utility {
     public static final int INNER_SQUARE_LENGTH  =  28;
     public static final int GRID_WIDTH           = 320;
     public static final int GRID_HEIGHT          = 640;
+    public static final int BOTTOM_ROW_HEIGHT    = 608;
     public static final Random rgen = new Random();
     public static final String IMAGES_PATH;
     static {
