@@ -1,7 +1,8 @@
 package Engine.Tetromino;
 
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
@@ -127,8 +128,7 @@ public class Tetromino extends TetrisGraphic {
      * Tetromino Factory
      *
      * <p>
-     * A factory class for the {@code Tetromino}. All instances of {@code Tetromino}
-     * must be instantiated via static methods enclosed within this class.
+     * A factory class for the {@code Tetromino}.
      */
     public static final class TetrominoFactory {
 
