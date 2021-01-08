@@ -100,7 +100,7 @@ public class Tetromino extends TetrisGraphic {
 
     /**
      * A private, secondary constructor for a {@code Tetromino} intended
-     * for internal subclass and {@code TetrominoFactory} use.
+     * for internal subclass use.
      *
      * @param axis the axis of this {@code Tetromino}
      * @param baseSquares the squares that form this {@code Tetromino}
@@ -433,7 +433,7 @@ public class Tetromino extends TetrisGraphic {
 
         /**
          * A method to assemble a {@code List} of {@code Square}s that represent a
-         * {@code Engine.Tetromino}
+         * {@code Tetromino}
          *
          * @param axis the axis of the {@code Tetromino} under construction
          * @param color the color of the {@code Tetromino} under construction
