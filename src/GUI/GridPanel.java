@@ -47,76 +47,96 @@ public class GridPanel extends JPanel {
                 .place(KeyEvent.VK_D, KeyAction.MOVE_RIGHT)
                 .place(KeyEvent.VK_DOWN, KeyAction.SOFT_DROP)
                 .place(KeyEvent.VK_S, KeyAction.SOFT_DROP)
-                .place(KeyEvent.VK_C, KeyAction.HOLD_TET);
+                .place(KeyEvent.VK_C, KeyAction.HOLD_TET)
+                .place(KeyEvent.VK_ESCAPE, KeyAction.PAUSE);
     }
 
     private enum KeyAction {
         HARD_DROP {
             @Override
             public void perform() {
-                if (!INSTANCE.ghostTet.isNull()) {
-                    INSTANCE.currentTet = INSTANCE.ghostTet.manifest();
-                    INSTANCE.ghostTet = TetrominoFactory.NULL_TET;
-                    INSTANCE.postImpactUpdate();
+                if(INSTANCE.gameStatus.isRunning()) {
+                    if (!INSTANCE.ghostTet.isNull()) {
+                        INSTANCE.currentTet = INSTANCE.ghostTet.manifest();
+                        INSTANCE.ghostTet = TetrominoFactory.NULL_TET;
+                        INSTANCE.postImpactUpdate();
+                    }
                 }
             }
         },
         ROTATE {
             @Override
             public void perform() {
-                final Tetromino temp = INSTANCE.currentTet;
-                if((INSTANCE.currentTet =
-                        INSTANCE.landscape.tryRotation(INSTANCE.currentTet)) != temp)
-                    INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
+                if(INSTANCE.gameStatus.isRunning()) {
+                    final Tetromino temp = INSTANCE.currentTet;
+                    if ((INSTANCE.currentTet =
+                            INSTANCE.landscape.tryRotation(INSTANCE.currentTet)) != temp)
+                        INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
+                }
             }
         },
         MOVE_LEFT {
             @Override
             public void perform() {
-                final Tetromino temp = INSTANCE.currentTet;
-                if ((INSTANCE.currentTet =
-                        INSTANCE.landscape.tryMovingLeft(INSTANCE.currentTet)) != temp)
-                    INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
+                if(INSTANCE.gameStatus.isRunning()) {
+                    final Tetromino temp = INSTANCE.currentTet;
+                    if ((INSTANCE.currentTet =
+                            INSTANCE.landscape.tryMovingLeft(INSTANCE.currentTet)) != temp)
+                        INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
+                }
             }
         },
         MOVE_RIGHT {
             @Override
             public void perform() {
-                final Tetromino temp = INSTANCE.currentTet;
-                if ((INSTANCE.currentTet =
-                        INSTANCE.landscape.tryMovingRight(INSTANCE.currentTet)) != temp)
-                    INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
+                if(INSTANCE.gameStatus.isRunning()) {
+                    final Tetromino temp = INSTANCE.currentTet;
+                    if ((INSTANCE.currentTet =
+                            INSTANCE.landscape.tryMovingRight(INSTANCE.currentTet)) != temp)
+                        INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
+                }
             }
         },
         SOFT_DROP {
             @Override
             public void perform() {
-                final Tetromino temp = INSTANCE.currentTet;
-                if ((INSTANCE.currentTet =
-                        INSTANCE.landscape.tryFalling(INSTANCE.currentTet)) != temp)
-                    INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
+                if(INSTANCE.gameStatus.isRunning()) {
+                    final Tetromino temp = INSTANCE.currentTet;
+                    if ((INSTANCE.currentTet =
+                            INSTANCE.landscape.tryFalling(INSTANCE.currentTet)) != temp)
+                        INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
+                }
             }
         },
         HOLD_TET {
             @Override
             public void perform() {
-                if (!INSTANCE.held && INSTANCE.currentTet != TetrominoFactory.NULL_TET) {
-                    if (INSTANCE.tetHold == TetrominoFactory.NULL_TET) {
-                        INSTANCE.tetHold = INSTANCE.currentTet.respawn();
-                        INSTANCE.transition();
-                    } else {
-                        final Tetromino temp = INSTANCE.currentTet.respawn();
-                        INSTANCE.currentTet = INSTANCE.tetHold;
-                        INSTANCE.tetHold = temp;
-                        INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
+                if(INSTANCE.gameStatus.isRunning()) {
+                    if (!INSTANCE.held && INSTANCE.currentTet != TetrominoFactory.NULL_TET) {
+                        if (INSTANCE.tetHold == TetrominoFactory.NULL_TET) {
+                            INSTANCE.tetHold = INSTANCE.currentTet.respawn();
+                            INSTANCE.transition();
+                        } else {
+                            final Tetromino temp = INSTANCE.currentTet.respawn();
+                            INSTANCE.currentTet = INSTANCE.tetHold;
+                            INSTANCE.tetHold = temp;
+                            INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
+                        }
+                        INSTANCE.held = true;
+                        Game.INSTANCE.update(
+                                INSTANCE.tetLineup, INSTANCE.tetHold,
+                                INSTANCE.level, INSTANCE.landscape.getScore()
+                        );
+                        INSTANCE.updatePanel();
                     }
-                    INSTANCE.held = true;
-                    Game.INSTANCE.update(
-                            INSTANCE.tetLineup, INSTANCE.tetHold,
-                            INSTANCE.level, INSTANCE.landscape.getScore()
-                    );
-                    INSTANCE.updatePanel();
                 }
+            }
+        },
+        PAUSE {
+            @Override
+            public void perform() {
+                INSTANCE.gameStatus = INSTANCE.gameStatus.pause();
+                INSTANCE.updatePanel();
             }
         };
         public abstract void perform();
@@ -177,12 +197,10 @@ public class GridPanel extends JPanel {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(final KeyEvent e){
-                if(gameStatus.isRunning())
-                    KEY_ACTIONS.get(e.getKeyCode()).perform();
-                if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
-                    gameStatus = gameStatus.pause();
-                    updatePanel();
-                }
+                final KeyAction ka = KEY_ACTIONS.get(
+                        e.getKeyCode()
+                );
+                if(ka != null) ka.perform();
             }
         });
         new Timer(TIMER_DELAY, new ActionListener(){
