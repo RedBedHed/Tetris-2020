@@ -12,9 +12,9 @@ import java.awt.geom.RoundRectangle2D;
  * Square
  *
  * <p>
- * A {@code Square} is the basic unit of a {@code Tetromino}. Although this class
- * is not final, its constructor is private. Therefore, this class may not be subclassed
- * externally.
+ * A {@code Square} is the basic unit of a {@code Tetromino}. Although
+ * this class is not final, its constructor is private. Therefore, this
+ * class may not be subclassed externally.
  *
  * @author Ellie Moore
  * @version 08.06.2020
@@ -51,6 +51,10 @@ public class Square extends TetrisGraphic {
                 axis.x, axis.y, Utility.INNER_SQUARE_LENGTH, Utility.INNER_SQUARE_LENGTH,
                 Utility.SQUARE_BUFFER, Utility.SQUARE_BUFFER
         ));
+        g2.draw3DRect(
+                axis.x, axis.y, Utility.INNER_SQUARE_LENGTH,
+                Utility.INNER_SQUARE_LENGTH, true
+        );
     }
 
     /**

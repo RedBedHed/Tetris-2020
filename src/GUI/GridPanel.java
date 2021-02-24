@@ -163,10 +163,10 @@ public class GridPanel extends JPanel {
             return ke == null? KeyAction.NULL: ke;
         }
 
-    }
+        public static final class ChainedMap<K,V> extends HashMap<K,V> {
+            public ChainedMap<K,V> place(K k, V v){ put(k, v); return this; }
+        }
 
-    public static final class ChainedMap<K,V> extends HashMap<K,V> {
-        public ChainedMap<K,V> place(K k, V v){ put(k, v); return this; }
     }
 
     private Tetromino currentTet;
