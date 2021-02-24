@@ -88,7 +88,7 @@ public final class Game {
         gameFrame.setSize(GAME_FRAME_SIZE);
         gameFrame.setResizable(false);
         gameFrame.setLayout(new BorderLayout());
-        gamePanel = new GridPanel();
+        gamePanel = GridPanel.INSTANCE;
         lineupPanel = new LineupPanel(gamePanel.getTetLineup());
         holdPanel = new HoldPanel(gamePanel.getTetHold());
         scorePanel = new ScorePanel();

@@ -10,19 +10,19 @@ package Engine.Navigation;
  * @version 08.06.2020
  */
 public enum Orientation {
-    FIRST{
+    FIRST {
         /** @inheritDoc */
         @Override public Orientation rotateClockwise() { return SECOND; }
     },
-    SECOND{
+    SECOND {
         /** @inheritDoc */
         @Override public Orientation rotateClockwise() { return THIRD; }
     },
-    THIRD{
+    THIRD {
         /** @inheritDoc */
         @Override public Orientation rotateClockwise() { return FOURTH; }
     },
-    FOURTH{
+    FOURTH {
         /** @inheritDoc */
         @Override public Orientation rotateClockwise() { return FIRST; }
     };

@@ -216,7 +216,7 @@ public class Tetromino extends TetrisGraphic {
      *
      * @param x the x coordinate of the new {@code Tetromino}
      * @param y the y coordinate of the new {@code Tetromino}
-     * @return a {@code Tetromino} at the specified coordinates or {@code NullTetromino} if
+     * @return a {@code Tetromino} at the specified coordinates or the instance if
      * the given coordinates lie beneath the x and y axes.
      */
     public Tetromino copyAt(final int x, final int y) {
@@ -450,7 +450,7 @@ public class Tetromino extends TetrisGraphic {
      *
      * <p>
      * Each {@code Shape} is responsible for assembling a {@code List} of four adjacent
-     * {@code Square}s. Each {@code shape} can be categorized by the location of its axis. An
+     * {@code Square}s. Each {@code Shape} can be categorized by the location of its axis. An
      * on-axis {@code Shape} has an axis that rests along one of its edges, while an
      * off-axis {@code Shape} has an axis that lies within one of its squares.
      */
