@@ -36,10 +36,10 @@ public class GridPanel extends JPanel {
         FIRST_LEVEL_SCORE_LIMIT = 8192;
         TIMER_DELAY = 10;
         INSTANCE = new GridPanel();
-
     }
 
     private enum KeyAction {
+
         HARD_DROP {
             @Override
             public void perform() {
@@ -52,6 +52,7 @@ public class GridPanel extends JPanel {
                 }
             }
         },
+
         ROTATE {
             @Override
             public void perform() {
@@ -63,6 +64,7 @@ public class GridPanel extends JPanel {
                 }
             }
         },
+
         MOVE_LEFT {
             @Override
             public void perform() {
@@ -74,6 +76,7 @@ public class GridPanel extends JPanel {
                 }
             }
         },
+
         MOVE_RIGHT {
             @Override
             public void perform() {
@@ -85,6 +88,7 @@ public class GridPanel extends JPanel {
                 }
             }
         },
+
         SOFT_DROP {
             @Override
             public void perform() {
@@ -96,6 +100,7 @@ public class GridPanel extends JPanel {
                 }
             }
         },
+
         HOLD_TET {
             @Override
             public void perform() {
@@ -120,6 +125,7 @@ public class GridPanel extends JPanel {
                 }
             }
         },
+
         PAUSE {
             @Override
             public void perform() {
@@ -127,6 +133,7 @@ public class GridPanel extends JPanel {
                 INSTANCE.updatePanel();
             }
         },
+
         NULL {
             @Override
             public void perform() {
