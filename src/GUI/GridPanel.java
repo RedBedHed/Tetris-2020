@@ -25,7 +25,6 @@ public class GridPanel extends JPanel {
     public static final int FIRST_LEVEL_SCORE_LIMIT;
     public static final int TIMER_DELAY;
     public static final GridPanel INSTANCE;
-    public static final Map<Integer, KeyAction> KEY_ACTIONS;
 
     static {
         PANEL_WIDTH = Utility.GRID_WIDTH;
@@ -37,18 +36,7 @@ public class GridPanel extends JPanel {
         FIRST_LEVEL_SCORE_LIMIT = 8192;
         TIMER_DELAY = 10;
         INSTANCE = new GridPanel();
-        KEY_ACTIONS = new ChainedMap<Integer, KeyAction>()
-                .place(KeyEvent.VK_SPACE, KeyAction.HARD_DROP)
-                .place(KeyEvent.VK_UP, KeyAction.ROTATE)
-                .place(KeyEvent.VK_W, KeyAction.ROTATE)
-                .place(KeyEvent.VK_LEFT, KeyAction.MOVE_LEFT)
-                .place(KeyEvent.VK_A, KeyAction.MOVE_RIGHT)
-                .place(KeyEvent.VK_RIGHT, KeyAction.MOVE_RIGHT)
-                .place(KeyEvent.VK_D, KeyAction.MOVE_RIGHT)
-                .place(KeyEvent.VK_DOWN, KeyAction.SOFT_DROP)
-                .place(KeyEvent.VK_S, KeyAction.SOFT_DROP)
-                .place(KeyEvent.VK_C, KeyAction.HOLD_TET)
-                .place(KeyEvent.VK_ESCAPE, KeyAction.PAUSE);
+
     }
 
     private enum KeyAction {
@@ -138,8 +126,36 @@ public class GridPanel extends JPanel {
                 INSTANCE.gameStatus = INSTANCE.gameStatus.pause();
                 INSTANCE.updatePanel();
             }
+        },
+        NULL {
+            @Override
+            public void perform() {
+            }
         };
+
         public abstract void perform();
+
+        private static final Map<Integer, KeyAction> KEY_ACTIONS;
+        static {
+            KEY_ACTIONS = new ChainedMap<Integer, KeyAction>()
+                    .place(KeyEvent.VK_SPACE, KeyAction.HARD_DROP)
+                    .place(KeyEvent.VK_UP, KeyAction.ROTATE)
+                    .place(KeyEvent.VK_W, KeyAction.ROTATE)
+                    .place(KeyEvent.VK_LEFT, KeyAction.MOVE_LEFT)
+                    .place(KeyEvent.VK_A, KeyAction.MOVE_RIGHT)
+                    .place(KeyEvent.VK_RIGHT, KeyAction.MOVE_RIGHT)
+                    .place(KeyEvent.VK_D, KeyAction.MOVE_RIGHT)
+                    .place(KeyEvent.VK_DOWN, KeyAction.SOFT_DROP)
+                    .place(KeyEvent.VK_S, KeyAction.SOFT_DROP)
+                    .place(KeyEvent.VK_C, KeyAction.HOLD_TET)
+                    .place(KeyEvent.VK_ESCAPE, KeyAction.PAUSE);
+        }
+
+        public static KeyAction get(final int keyEvent) {
+            final KeyAction ke = KEY_ACTIONS.get(keyEvent);
+            return ke == null? KeyAction.NULL: ke;
+        }
+
     }
 
     public static final class ChainedMap<K,V> extends HashMap<K,V> {
@@ -197,10 +213,7 @@ public class GridPanel extends JPanel {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(final KeyEvent e){
-                final KeyAction ka = KEY_ACTIONS.get(
-                        e.getKeyCode()
-                );
-                if(ka != null) ka.perform();
+                KeyAction.get(e.getKeyCode()).perform();
             }
         });
         new Timer(TIMER_DELAY, new ActionListener(){
