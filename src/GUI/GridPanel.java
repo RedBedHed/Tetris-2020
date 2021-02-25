@@ -14,7 +14,7 @@ import Engine.Tetromino.Tetromino.TetrominoFactory;
 import Engine.Navigation.TetrisLandscape;
 
 // Boilerplate
-public class GridPanel extends JPanel {
+public final class GridPanel extends JPanel {
 
     public static final int PANEL_WIDTH;
     public static final int PANEL_HEIGHT;
@@ -134,37 +134,33 @@ public class GridPanel extends JPanel {
             }
         },
 
-        NULL {
-            @Override
-            public void perform() {
-            }
-        };
+        NULL { @Override public void perform() {} };
 
         public abstract void perform();
 
         private static final Map<Integer, KeyAction> KEY_ACTIONS;
         static {
             KEY_ACTIONS = new ChainedMap<Integer, KeyAction>()
-                    .place(KeyEvent.VK_SPACE, KeyAction.HARD_DROP)
-                    .place(KeyEvent.VK_UP, KeyAction.ROTATE)
-                    .place(KeyEvent.VK_W, KeyAction.ROTATE)
-                    .place(KeyEvent.VK_LEFT, KeyAction.MOVE_LEFT)
-                    .place(KeyEvent.VK_A, KeyAction.MOVE_RIGHT)
-                    .place(KeyEvent.VK_RIGHT, KeyAction.MOVE_RIGHT)
-                    .place(KeyEvent.VK_D, KeyAction.MOVE_RIGHT)
-                    .place(KeyEvent.VK_DOWN, KeyAction.SOFT_DROP)
-                    .place(KeyEvent.VK_S, KeyAction.SOFT_DROP)
-                    .place(KeyEvent.VK_C, KeyAction.HOLD_TET)
-                    .place(KeyEvent.VK_ESCAPE, KeyAction.PAUSE);
+                    .place(KeyEvent.VK_SPACE, HARD_DROP)
+                    .place(KeyEvent.VK_UP, ROTATE)
+                    .place(KeyEvent.VK_W, ROTATE)
+                    .place(KeyEvent.VK_LEFT, MOVE_LEFT)
+                    .place(KeyEvent.VK_A, MOVE_RIGHT)
+                    .place(KeyEvent.VK_RIGHT, MOVE_RIGHT)
+                    .place(KeyEvent.VK_D, MOVE_RIGHT)
+                    .place(KeyEvent.VK_DOWN, SOFT_DROP)
+                    .place(KeyEvent.VK_S, SOFT_DROP)
+                    .place(KeyEvent.VK_C, HOLD_TET)
+                    .place(KeyEvent.VK_ESCAPE, PAUSE);
         }
 
         public static KeyAction get(final int keyEvent) {
             final KeyAction ke = KEY_ACTIONS.get(keyEvent);
-            return ke == null? KeyAction.NULL: ke;
+            return ke == null? NULL: ke;
         }
 
-        public static final class ChainedMap<K,V> extends HashMap<K,V> {
-            public ChainedMap<K,V> place(K k, V v){ put(k, v); return this; }
+        private static final class ChainedMap<K,V> extends HashMap<K,V> {
+            public final ChainedMap<K,V> place(K k, V v){ put(k, v); return this; }
         }
 
     }
@@ -187,7 +183,7 @@ public class GridPanel extends JPanel {
     private int level;
     private Palette palette;
 
-    public GridPanel(){
+    private GridPanel(){
         setLayout(null);
         setSize(PANEL_DIMENSION);
         init();
