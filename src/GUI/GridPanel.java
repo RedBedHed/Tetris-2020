@@ -155,8 +155,8 @@ public final class GridPanel extends JPanel {
         }
 
         public static KeyAction get(final int keyEvent) {
-            final KeyAction ke = KEY_ACTIONS.get(keyEvent);
-            return ke == null? NULL: ke;
+            final KeyAction ka = KEY_ACTIONS.get(keyEvent);
+            return ka == null? NULL: ka;
         }
 
         private static final class ChainedMap<K,V> extends HashMap<K,V> {
