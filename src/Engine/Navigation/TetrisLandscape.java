@@ -278,7 +278,8 @@ public final class TetrisLandscape implements Paintable {
     public Tetromino tryRotation(@NotNull final Tetromino t){
         final Tetromino r = t.rotate();
         for(final Square s: r.getBaseSquares()) {
-            if (landscape.contains(s.getAxis()) || s.getAxis().x < 0 || s.getAxis().x >= Utility.GRID_WIDTH)
+            if (landscape.contains(s.getAxis()) || s.getAxis().x < 0
+                    || s.getAxis().x >= Utility.GRID_WIDTH)
                 return t;
         }
         return r;
@@ -292,7 +293,8 @@ public final class TetrisLandscape implements Paintable {
      * @return whether or not the given {@code Tetromino} lies at a {@code Point} within the landscape
      */
     public boolean contains(@NotNull final Tetromino t){
-        for(final Square s: t.getBaseSquares()) if(landscape.contains(s.getAxis())) return true;
+        for(final Square s: t.getBaseSquares())
+            if(landscape.contains(s.getAxis())) return true;
         return false;
     }
 

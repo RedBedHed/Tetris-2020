@@ -38,133 +38,6 @@ public final class GridPanel extends JPanel {
         INSTANCE = new GridPanel();
     }
 
-    private enum KeyAction {
-
-        HARD_DROP {
-            @Override
-            public void perform() {
-                if(INSTANCE.gameStatus.isRunning()) {
-                    if (!INSTANCE.ghostTet.isNull()) {
-                        INSTANCE.currentTet = INSTANCE.ghostTet.manifest();
-                        INSTANCE.ghostTet = TetrominoFactory.NULL_TET;
-                        INSTANCE.postImpactUpdate();
-                    }
-                }
-            }
-        },
-
-        ROTATE {
-            @Override
-            public void perform() {
-                if(INSTANCE.gameStatus.isRunning()) {
-                    final Tetromino temp = INSTANCE.currentTet;
-                    if ((INSTANCE.currentTet =
-                            INSTANCE.landscape.tryRotation(INSTANCE.currentTet)) != temp)
-                        INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
-                }
-            }
-        },
-
-        MOVE_LEFT {
-            @Override
-            public void perform() {
-                if(INSTANCE.gameStatus.isRunning()) {
-                    final Tetromino temp = INSTANCE.currentTet;
-                    if ((INSTANCE.currentTet =
-                            INSTANCE.landscape.tryMovingLeft(INSTANCE.currentTet)) != temp)
-                        INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
-                }
-            }
-        },
-
-        MOVE_RIGHT {
-            @Override
-            public void perform() {
-                if(INSTANCE.gameStatus.isRunning()) {
-                    final Tetromino temp = INSTANCE.currentTet;
-                    if ((INSTANCE.currentTet =
-                            INSTANCE.landscape.tryMovingRight(INSTANCE.currentTet)) != temp)
-                        INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
-                }
-            }
-        },
-
-        SOFT_DROP {
-            @Override
-            public void perform() {
-                if(INSTANCE.gameStatus.isRunning()) {
-                    final Tetromino temp = INSTANCE.currentTet;
-                    if ((INSTANCE.currentTet =
-                            INSTANCE.landscape.tryFalling(INSTANCE.currentTet)) != temp)
-                        INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
-                }
-            }
-        },
-
-        HOLD_TET {
-            @Override
-            public void perform() {
-                if(INSTANCE.gameStatus.isRunning()) {
-                    if (!INSTANCE.held && INSTANCE.currentTet != TetrominoFactory.NULL_TET) {
-                        if (INSTANCE.tetHold == TetrominoFactory.NULL_TET) {
-                            INSTANCE.tetHold = INSTANCE.currentTet.respawn();
-                            INSTANCE.transition();
-                        } else {
-                            final Tetromino temp = INSTANCE.currentTet.respawn();
-                            INSTANCE.currentTet = INSTANCE.tetHold;
-                            INSTANCE.tetHold = temp;
-                            INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
-                        }
-                        INSTANCE.held = true;
-                        Game.INSTANCE.update(
-                                INSTANCE.tetLineup, INSTANCE.tetHold,
-                                INSTANCE.level, INSTANCE.landscape.getScore()
-                        );
-                        INSTANCE.updatePanel();
-                    }
-                }
-            }
-        },
-
-        PAUSE {
-            @Override
-            public void perform() {
-                INSTANCE.gameStatus = INSTANCE.gameStatus.pause();
-                INSTANCE.updatePanel();
-            }
-        },
-
-        NULL { @Override public void perform() {} };
-
-        public abstract void perform();
-
-        private static final Map<Integer, KeyAction> KEY_ACTIONS;
-        static {
-            KEY_ACTIONS = new ChainedMap<Integer, KeyAction>()
-                    .place(KeyEvent.VK_SPACE, HARD_DROP)
-                    .place(KeyEvent.VK_UP, ROTATE)
-                    .place(KeyEvent.VK_W, ROTATE)
-                    .place(KeyEvent.VK_LEFT, MOVE_LEFT)
-                    .place(KeyEvent.VK_A, MOVE_RIGHT)
-                    .place(KeyEvent.VK_RIGHT, MOVE_RIGHT)
-                    .place(KeyEvent.VK_D, MOVE_RIGHT)
-                    .place(KeyEvent.VK_DOWN, SOFT_DROP)
-                    .place(KeyEvent.VK_S, SOFT_DROP)
-                    .place(KeyEvent.VK_C, HOLD_TET)
-                    .place(KeyEvent.VK_ESCAPE, PAUSE);
-        }
-
-        public static KeyAction get(final int keyEvent) {
-            final KeyAction ka = KEY_ACTIONS.get(keyEvent);
-            return ka == null? NULL: ka;
-        }
-
-        private static final class ChainedMap<K,V> extends HashMap<K,V> {
-            public final ChainedMap<K,V> place(K k, V v){ put(k, v); return this; }
-        }
-
-    }
-
     private Tetromino currentTet;
     private Tetromino ghostTet;
     private List<Tetromino> tetLineup;
@@ -216,7 +89,59 @@ public final class GridPanel extends JPanel {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(final KeyEvent e){
-                KeyAction.get(e.getKeyCode()).perform();
+                final int kc = e.getKeyCode();
+                if(kc == KeyEvent.VK_ESCAPE) {
+                    INSTANCE.gameStatus = INSTANCE.gameStatus.pause();
+                    INSTANCE.updatePanel();
+                    return;
+                }
+                if(INSTANCE.gameStatus.isRunning()) {
+                    if(kc == KeyEvent.VK_SPACE) {
+                        if (!INSTANCE.ghostTet.isNull()) {
+                            INSTANCE.currentTet = INSTANCE.ghostTet.manifest();
+                            INSTANCE.ghostTet = TetrominoFactory.NULL_TET;
+                            INSTANCE.postImpactUpdate();
+                        }
+                    } else if (kc == KeyEvent.VK_UP || kc == KeyEvent.VK_W) {
+                        final Tetromino temp = INSTANCE.currentTet;
+                        if ((INSTANCE.currentTet =
+                                INSTANCE.landscape.tryRotation(INSTANCE.currentTet)) != temp)
+                            INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
+                    } else if (kc == KeyEvent.VK_LEFT || kc == KeyEvent.VK_A) {
+                        final Tetromino temp = INSTANCE.currentTet;
+                        if ((INSTANCE.currentTet =
+                                INSTANCE.landscape.tryMovingLeft(INSTANCE.currentTet)) != temp)
+                            INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
+                    } else if (kc == KeyEvent.VK_RIGHT || kc == KeyEvent.VK_D) {
+                        final Tetromino temp = INSTANCE.currentTet;
+                        if ((INSTANCE.currentTet =
+                                INSTANCE.landscape.tryMovingRight(INSTANCE.currentTet)) != temp)
+                            INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
+                    } else if (kc == KeyEvent.VK_DOWN || kc == KeyEvent.VK_S) {
+                        final Tetromino temp = INSTANCE.currentTet;
+                        if ((INSTANCE.currentTet =
+                                INSTANCE.landscape.tryFalling(INSTANCE.currentTet)) != temp)
+                            INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
+                    } else if (kc == KeyEvent.VK_C) {
+                        if (!INSTANCE.held && INSTANCE.currentTet != TetrominoFactory.NULL_TET) {
+                            if (INSTANCE.tetHold == TetrominoFactory.NULL_TET) {
+                                INSTANCE.tetHold = INSTANCE.currentTet.respawn();
+                                INSTANCE.transition();
+                            } else {
+                                final Tetromino temp = INSTANCE.currentTet.respawn();
+                                INSTANCE.currentTet = INSTANCE.tetHold;
+                                INSTANCE.tetHold = temp;
+                                INSTANCE.ghostTet = findGhost(INSTANCE.currentTet);
+                            }
+                            INSTANCE.held = true;
+                            Game.INSTANCE.update(
+                                    INSTANCE.tetLineup, INSTANCE.tetHold,
+                                    INSTANCE.level, INSTANCE.landscape.getScore()
+                            );
+                            INSTANCE.updatePanel();
+                        }
+                    }
+                }
             }
         });
         new Timer(TIMER_DELAY, new ActionListener(){
