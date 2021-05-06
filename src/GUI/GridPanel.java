@@ -156,7 +156,7 @@ public final class GridPanel extends JPanel {
         public abstract boolean isGameOver();
         public abstract GameStatus pause();
     }
-    
+
     private synchronized void performKeyAction(final KeyEvent e) {
         final int kc = e.getKeyCode();
         if(kc == KeyEvent.VK_ESCAPE) {

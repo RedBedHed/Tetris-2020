@@ -105,12 +105,12 @@ public final class TetrisLandscape implements Paintable {
      * <p>
      * This method also handles scoring with an O(N) algorithm where N is the current
      * level. Scores are calculated using the original Nintendo scoring system:
-     * <ol>
+     * <ul>
      *     <li> 1 line cleared = 40 * (current level) </li>
      *     <li> 2 lines cleared = 100 * (current level) </li>
      *     <li> 3 lines cleared = 300 * (current level) </li>
      *     <li> 4 lines cleared = 1200 * (current level) </li>
-     * </ol>
+     * </ul>
      *
      * @param t the current {@code Tetromino} to be added
      * @param level the current level number
