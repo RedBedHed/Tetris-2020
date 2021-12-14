@@ -54,7 +54,7 @@ public abstract class TetrisGraphic implements Paintable {
      *
      * @return the axis of this {@code TetrisGraphic}
      */
-    public final Point getAxis(){
+    public final @NotNull Point getAxis(){
         return axis;
     }
 
@@ -63,7 +63,7 @@ public abstract class TetrisGraphic implements Paintable {
      *
      * @return the color of this {@code TetrisGraphic}
      */
-    public final Color getColor() {
+    public final @NotNull Color getColor() {
         return color;
     }
 

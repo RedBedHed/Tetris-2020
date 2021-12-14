@@ -136,53 +136,53 @@ public class Tetromino extends TetrisGraphic {
          * A public, null-safe instance.
          */
         public static final Tetromino NULL_TET = new Tetromino(
-                Point.NULL, Shape.NULL, Orientation.FIRST, Color.WHITE, -1, -1
+            Point.NULL, Shape.NULL, Orientation.FIRST, Color.WHITE, -1, -1
         ){
 
             @Override
-            public final boolean isNull(){
+            public boolean isNull(){
                 return true;
             }
 
             @Override
-            public final Tetromino copyAt(final int x, final int y) {
+            public Tetromino copyAt(final int x, final int y) {
                 return this;
             }
 
             @Override
-            public final Tetromino dematerialize() {
+            public Tetromino dematerialize() {
                 return this;
             }
 
             @Override
-            public final Tetromino rotate(){
+            public Tetromino rotate(){
                 return this;
             }
 
             @Override
-            public final Tetromino fall(){
+            public Tetromino fall(){
                 return this;
             }
 
             @Override
-            public final Tetromino slide(final Direction d){
+            public Tetromino slide(final @NotNull Direction d){
                 return this;
             }
 
             @Override
-            public final Tetromino respawn(){
+            public Tetromino respawn(){
                 return this;
             }
 
             @Override
-            public final Tetromino reColor(final Palette p){
+            public Tetromino reColor(final @NotNull Palette p){
                 return this;
             }
 
         };
 
         /** This class may not be instantiated. */
-        private TetrominoFactory(){
+        private TetrominoFactory() {
         }
 
         /**
@@ -193,13 +193,13 @@ public class Tetromino extends TetrisGraphic {
         public static List<Tetromino> generateLineup(@NotNull final Palette palette) {
             final Orientation o = Orientation.FIRST;
             return Utility.shuffle(new Tetromino[]{
-                    new Tetromino(Shape.I.getSpawnPoint(), Shape.I, o, genColor(palette), 0, 1),
-                    new Tetromino(Shape.J.getSpawnPoint(), Shape.J, o, genColor(palette), 1, 1),
-                    new Tetromino(Shape.L.getSpawnPoint(), Shape.L, o, genColor(palette), 2, 1),
-                    new Tetromino(Shape.O.getSpawnPoint(), Shape.O, o, genColor(palette), 3, 1),
-                    new Tetromino(Shape.S.getSpawnPoint(), Shape.S, o, genColor(palette), 4, 1),
-                    new Tetromino(Shape.T.getSpawnPoint(), Shape.T, o, genColor(palette), 5, 1),
-                    new Tetromino(Shape.Z.getSpawnPoint(), Shape.Z, o, genColor(palette), 6, 1)
+                new Tetromino(Shape.I.getSpawnPoint(), Shape.I, o, genColor(palette), 0, 1),
+                new Tetromino(Shape.J.getSpawnPoint(), Shape.J, o, genColor(palette), 1, 1),
+                new Tetromino(Shape.L.getSpawnPoint(), Shape.L, o, genColor(palette), 2, 1),
+                new Tetromino(Shape.O.getSpawnPoint(), Shape.O, o, genColor(palette), 3, 1),
+                new Tetromino(Shape.S.getSpawnPoint(), Shape.S, o, genColor(palette), 4, 1),
+                new Tetromino(Shape.T.getSpawnPoint(), Shape.T, o, genColor(palette), 5, 1),
+                new Tetromino(Shape.Z.getSpawnPoint(), Shape.Z, o, genColor(palette), 6, 1)
             });
         }
 
@@ -222,8 +222,8 @@ public class Tetromino extends TetrisGraphic {
     public Tetromino copyAt(final int x, final int y) {
         if(x < 0 || y < 0) return this;
         final Tetromino t = new Tetromino(
-                new Point(x, y), shape, orientation, color,
-                colorCode, (y >>> Utility.LOG_2_SQUARE_LENGTH) + 1
+            new Point(x, y), shape, orientation, color,
+            colorCode, (y >>> Utility.LOG_2_SQUARE_LENGTH) + 1
         );
         if(isGhost()) return t.dematerialize();
         return t;
@@ -259,17 +259,17 @@ public class Tetromino extends TetrisGraphic {
         }
 
         @Override
-        public final Tetromino dematerialize() {
+        public Tetromino dematerialize() {
             return this;
         }
 
         @Override
-        public final Tetromino manifest(){
+        public Tetromino manifest(){
             return decoratedTetromino;
         }
 
         @Override
-        public final boolean isGhost(){
+        public boolean isGhost(){
             return true;
         }
 
@@ -283,7 +283,7 @@ public class Tetromino extends TetrisGraphic {
      */
     public Tetromino rotate() {
         final Tetromino t = new Tetromino(
-                axis, shape, orientation.rotateClockwise(), color, colorCode, depth
+            axis, shape, orientation.rotateClockwise(), color, colorCode, depth
         );
         if(isGhost()) return t.dematerialize();
         return t;
@@ -296,8 +296,8 @@ public class Tetromino extends TetrisGraphic {
      */
     public Tetromino fall() {
         final Tetromino t = new Tetromino(
-                Direction.DOWN.traverse(axis), shape, orientation,
-                color, colorCode, depth + 1
+            Direction.DOWN.traverse(axis), shape, orientation,
+            color, colorCode, depth + 1
         );
         if(isGhost()) return t.dematerialize();
         return t;
@@ -312,7 +312,7 @@ public class Tetromino extends TetrisGraphic {
      */
     public Tetromino slide(@NotNull final Direction d) {
         final Tetromino t = new Tetromino(
-                d.traverse(axis), shape, orientation, color, colorCode, depth
+            d.traverse(axis), shape, orientation, color, colorCode, depth
         );
         if(isGhost()) return t.dematerialize();
         return t;
@@ -326,7 +326,7 @@ public class Tetromino extends TetrisGraphic {
      */
     public Tetromino respawn(){
         final Tetromino t = new Tetromino(
-                shape.getSpawnPoint(), shape, Orientation.FIRST, color, colorCode, 1
+            shape.getSpawnPoint(), shape, Orientation.FIRST, color, colorCode, 1
         );
         if(isGhost()) return t.dematerialize();
         return t;
@@ -338,9 +338,9 @@ public class Tetromino extends TetrisGraphic {
      *
      * @return a re-colored {@code Tetromino}.
      */
-    public Tetromino reColor(@NotNull final Palette p){
+    public Tetromino reColor(@NotNull final Palette p) {
         final Tetromino t = new Tetromino(
-                axis, shape, orientation, p.getColor(colorCode), colorCode, depth
+            axis, shape, orientation, p.getColor(colorCode), colorCode, depth
         );
         if(isGhost()) return t.dematerialize();
         return t;
@@ -350,7 +350,7 @@ public class Tetromino extends TetrisGraphic {
      * @inheritDoc
      */
     @Override
-    public final void paint(@NotNull final Graphics g){
+    public final void paint(@NotNull final Graphics g) {
         for(final Square s: baseSquares) s.paint(g);
     }
 
@@ -360,25 +360,25 @@ public class Tetromino extends TetrisGraphic {
      * @return a {@code List} of the squares occupied by this {@code Tetromino}.
      */
     @NotNull
-    public final List<Square> getBaseSquares(){
+    public final List<Square> getBaseSquares() {
         return baseSquares;
     }
 
     /**
-     * A method to indicate whether or not this {@code Tetromino} is an instance of
+     * A method to indicate whether this {@code Tetromino} is an instance of
      * {@code NullTetromino}.
      *
-     * @return whether or not this {@code Tetromino} is an instance of {@code NullTetromino}.
+     * @return whether this {@code Tetromino} is an instance of {@code NullTetromino}.
      */
     public boolean isNull(){
         return false;
     }
 
     /**
-     * A method to indicate whether or not this {@code Tetromino} is an instance of
+     * A method to indicate whether this {@code Tetromino} is an instance of
      * {@code GhostTetromino}.
      *
-     * @return whether or not this {@code Tetromino} is an instance of {@code GhostTetromino}.
+     * @return whether this {@code Tetromino} is an instance of {@code GhostTetromino}.
      */
     public boolean isGhost(){
         return false;
@@ -417,7 +417,6 @@ public class Tetromino extends TetrisGraphic {
          * On-axis.
          */
         I {
-            /** @inheritDoc */
             @Override
             public Point getSpawnPoint(){
                 return I_SHAPE_ON_AXIS_SPAWN_POINT;
@@ -474,7 +473,6 @@ public class Tetromino extends TetrisGraphic {
          * Off-axis.
          */
         J {
-            /** @inheritDoc */
             @Override
             public Point getSpawnPoint(){
                 return OFF_AXIS_SPAWN_POINT;
@@ -531,7 +529,6 @@ public class Tetromino extends TetrisGraphic {
          * Off-axis.
          */
         L {
-            /** @inheritDoc */
             @Override
             public Point getSpawnPoint(){
                 return OFF_AXIS_SPAWN_POINT;
@@ -588,7 +585,6 @@ public class Tetromino extends TetrisGraphic {
          * On-axis.
          */
         O {
-            /** @inheritDoc */
             @Override
             public Point getSpawnPoint(){
                 return O_SHAPE_ON_AXIS_SPAWN_POINT;
@@ -616,7 +612,6 @@ public class Tetromino extends TetrisGraphic {
          * Off-axis.
          */
         S {
-            /** @inheritDoc */
             @Override
             public Point getSpawnPoint(){
                 return OFF_AXIS_SPAWN_POINT;
@@ -673,7 +668,6 @@ public class Tetromino extends TetrisGraphic {
          * Off-axis.
          */
         T {
-            /** @inheritDoc */
             @Override
             public Point getSpawnPoint(){
                 return OFF_AXIS_SPAWN_POINT;
@@ -722,7 +716,6 @@ public class Tetromino extends TetrisGraphic {
          * Off-axis.
          */
         Z {
-            /** @inheritDoc */
             @Override
             public Point getSpawnPoint(){
                 return OFF_AXIS_SPAWN_POINT;
@@ -797,10 +790,18 @@ public class Tetromino extends TetrisGraphic {
          */
         public abstract Point getSpawnPoint();
 
+        /**
+         * A method to assemble a tetromino of this Shape.
+         *
+         * @param orientation the orientation to use
+         * @param axis the axis at which to place the tetromino
+         * @param color the color of the tetromino
+         * @param colorCode the color code of the tetromino
+         * @return a list of the squares that constitute this tetromino
+         */
         public abstract List<Square> assemble(
             Orientation orientation, Point axis, Color color, int colorCode
         );
-
     }
 
     /**
