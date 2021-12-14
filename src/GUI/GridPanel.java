@@ -128,7 +128,7 @@ public final class GridPanel extends JPanel {
         return tetHold;
     }
 
-    protected synchronized List<Tetromino> getTetLineup(){
+    public synchronized List<Tetromino> getTetLineup(){
         return tetLineup;
     }
 
