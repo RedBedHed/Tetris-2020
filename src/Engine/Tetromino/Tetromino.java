@@ -90,9 +90,9 @@ public class Tetromino extends TetrisGraphic {
                       final int colorCode,
                       final int depth){
         super(axis, color, colorCode);
-        this.baseSquares = shape.assemblyLines.get(
-                orientation.ordinal()
-        ).assemble(axis, color, colorCode);
+        this.baseSquares = shape.assemble(
+                orientation, axis, color, colorCode
+        );
         this.orientation = orientation;
         this.shape = shape;
         this.depth = depth;
@@ -459,430 +459,379 @@ public class Tetromino extends TetrisGraphic {
         /**
          * On-axis.
          */
-        I (List.of(new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int cly = axis.y - Utility.SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(axis.x, cly), color, colorCode),
-                        Square.defaultInstance(new Point(axis.x + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(axis.x - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(
-                                axis.x - Utility.DOUBLE_SQUARE_LENGTH, cly), color, colorCode
-                        )
-                );
-            }
-        }, new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                return List.of(
-                        Square.defaultInstance(axis, color, colorCode),
-                        Square.defaultInstance(
-                                new Point(axis.x, axis.y - Utility.DOUBLE_SQUARE_LENGTH), color, colorCode
-                        ),
-                        Square.defaultInstance(new Point(axis.x, axis.y - Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(axis.x, axis.y + Utility.SQUARE_LENGTH), color, colorCode)
-                );
-            }
-        }, new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                return List.of(
-                        Square.defaultInstance(axis, color, colorCode),
-                        Square.defaultInstance(new Point(axis.x + Utility.SQUARE_LENGTH, axis.y), color, colorCode),
-                        Square.defaultInstance(new Point(axis.x - Utility.SQUARE_LENGTH, axis.y), color, colorCode),
-                        Square.defaultInstance(
-                                new Point(axis.x - Utility.DOUBLE_SQUARE_LENGTH, axis.y), color, colorCode
-                        )
-                );
-            }
-        }, new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, axis.y), color, colorCode),
-                        Square.defaultInstance(
-                                new Point(clx, axis.y - Utility.DOUBLE_SQUARE_LENGTH), color, colorCode
-                        ),
-                        Square.defaultInstance(new Point(clx, axis.y - Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(clx, axis.y + Utility.SQUARE_LENGTH), color, colorCode)
-                );
-            }
-        })) {
+        I {
             /** @inheritDoc */
             @Override
             public Point getSpawnPoint(){
                 return I_SHAPE_ON_AXIS_SPAWN_POINT;
             }
-        },
 
-        /**
-         * Off-axis.
-         */
-        J (List.of(new Assembler() {
             @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(
-                                clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
-                        ),
-                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
-                );
-            }
-        }, new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(
-                            clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
-                        )
-                );
-            }
-        }, new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(
-                            clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
-                        )
-                );
-            }
-        }, new Assembler(){
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(
-                                clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
-                        )
-                );
-            }
-        })) {
-            /** @inheritDoc */
-            @Override
-            public Point getSpawnPoint(){
-                return OFF_AXIS_SPAWN_POINT;
+            public List<Square> assemble(Orientation orientation, Point axis, Color color, int colorCode) {
+                switch(orientation) {
+                    case FIRST:
+                        final int cly = axis.y - Utility.SQUARE_LENGTH;
+                        return List.of(
+                                Square.defaultInstance(new Point(axis.x, cly), color, colorCode),
+                                Square.defaultInstance(new Point(axis.x + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(axis.x - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(
+                                        axis.x - Utility.DOUBLE_SQUARE_LENGTH, cly), color, colorCode
+                                )
+                        );
+                    case SECOND:
+                        return List.of(
+                                Square.defaultInstance(axis, color, colorCode),
+                                Square.defaultInstance(
+                                        new Point(axis.x, axis.y - Utility.DOUBLE_SQUARE_LENGTH), color, colorCode
+                                ),
+                                Square.defaultInstance(new Point(axis.x, axis.y - Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(axis.x, axis.y + Utility.SQUARE_LENGTH), color, colorCode)
+                        );
+                    case THIRD:
+                        return List.of(
+                                Square.defaultInstance(axis, color, colorCode),
+                                Square.defaultInstance(new Point(axis.x + Utility.SQUARE_LENGTH, axis.y), color, colorCode),
+                                Square.defaultInstance(new Point(axis.x - Utility.SQUARE_LENGTH, axis.y), color, colorCode),
+                                Square.defaultInstance(
+                                        new Point(axis.x - Utility.DOUBLE_SQUARE_LENGTH, axis.y), color, colorCode
+                                )
+                        );
+                    case FOURTH:
+                        final int clx = axis.x - Utility.SQUARE_LENGTH;
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, axis.y), color, colorCode),
+                                Square.defaultInstance(
+                                        new Point(clx, axis.y - Utility.DOUBLE_SQUARE_LENGTH), color, colorCode
+                                ),
+                                Square.defaultInstance(new Point(clx, axis.y - Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(clx, axis.y + Utility.SQUARE_LENGTH), color, colorCode)
+                        );
+                    default:
+                        return Collections.emptyList();
+                }
             }
         },
 
         /**
          * Off-axis.
          */
-        L (List.of(new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(
-                                clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
-                        ),
-                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
-                );
-            }
-        }, new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(
-                                clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
-                        )
-                );
-            }
-        }, new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(
-                                clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
-                        )
-                );
-            }
-        }, new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(
-                                clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
-                        )
-                );
-            }
-        })) {
+        J {
             /** @inheritDoc */
             @Override
             public Point getSpawnPoint(){
                 return OFF_AXIS_SPAWN_POINT;
+            }
+
+            @Override
+            public List<Square> assemble(Orientation orientation, Point axis, Color color, int colorCode) {
+                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
+                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
+                switch(orientation) {
+                    case FIRST:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(
+                                        clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
+                                ),
+                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
+                        );
+                    case SECOND:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(
+                                        clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
+                                )
+                        );
+                    case THIRD:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(
+                                        clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
+                                )
+                        );
+                    case FOURTH:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(
+                                        clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
+                                )
+                        );
+                    default:
+                        return Collections.emptyList();
+                }
+            }
+        },
+
+        /**
+         * Off-axis.
+         */
+        L {
+            /** @inheritDoc */
+            @Override
+            public Point getSpawnPoint(){
+                return OFF_AXIS_SPAWN_POINT;
+            }
+
+            @Override
+            public List<Square> assemble(Orientation orientation, Point axis, Color color, int colorCode) {
+                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
+                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
+                switch(orientation) {
+                    case FIRST:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(
+                                        clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
+                                ),
+                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
+                        );
+                    case SECOND:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(
+                                        clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
+                                )
+                        );
+                    case THIRD:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(
+                                        clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
+                                )
+                        );
+                    case FOURTH:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(
+                                        clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
+                                )
+                        );
+                    default:
+                        return Collections.emptyList();
+                }
             }
         },
 
         /**
          * On-axis.
          */
-        O (List.of(
-                Assembler.O_ASSEMBLER, Assembler.O_ASSEMBLER,
-                Assembler.O_ASSEMBLER, Assembler.O_ASSEMBLER
-        )) {
+        O {
             /** @inheritDoc */
             @Override
             public Point getSpawnPoint(){
                 return O_SHAPE_ON_AXIS_SPAWN_POINT;
             }
-        },
 
-        /**
-         * Off-axis.
-         */
-        S (List.of(new Assembler() {
             @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(
-                                clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
-                        )
-                );
-            }
-        }, new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(
-                                clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
-                        ),
-                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode)
-                );
-            }
-        }, new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(
-                                clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
-                        )
-                );
-            }
-        }, new Assembler(){
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(
-                                clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
-                        ),
-                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
-                );
-            }
-        })) {
-            /** @inheritDoc */
-            @Override
-            public Point getSpawnPoint(){
-                return OFF_AXIS_SPAWN_POINT;
+            public List<Square> assemble(Orientation orientation, Point axis, Color color, int colorCode) {
+                switch(orientation) {
+                    case FIRST: case SECOND: case THIRD: case FOURTH:
+                        return List.of(
+                                Square.defaultInstance(axis, color, colorCode),
+                                Square.defaultInstance(new Point(axis.x - Utility.SQUARE_LENGTH, axis.y), color, colorCode),
+                                Square.defaultInstance(new Point(axis.x, axis.y - Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(
+                                        axis.x - Utility.SQUARE_LENGTH, axis.y - Utility.SQUARE_LENGTH
+                                ), color, colorCode)
+                        );
+                    default:
+                        return Collections.emptyList();
+                }
             }
         },
 
         /**
          * Off-axis.
          */
-        T (List.of(new Assembler(){
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
-                );
-            }
-        }, new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
-                );
-            }
-        }, new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
-                );
-            }
-        }, new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
-                );
-            }
-        })) {
+        S {
             /** @inheritDoc */
             @Override
             public Point getSpawnPoint(){
                 return OFF_AXIS_SPAWN_POINT;
+            }
+
+            @Override
+            public List<Square> assemble(Orientation orientation, Point axis, Color color, int colorCode) {
+                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
+                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
+                switch(orientation) {
+                    case FIRST:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(
+                                        clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
+                                )
+                        );
+                    case SECOND:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(
+                                        clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
+                                ),
+                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode)
+                        );
+                    case THIRD:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(
+                                        clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
+                                )
+                        );
+                    case FOURTH:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(
+                                        clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
+                                ),
+                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
+                        );
+                    default:
+                        return Collections.emptyList();
+                }
             }
         },
 
         /**
          * Off-axis.
          */
-        Z (List.of(new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(
-                                clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
-                        ),
-                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
-                );
-            }
-        }, new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(
-                                clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
-                        )
-                );
-            }
-        }, new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(
-                                clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
-                        )
-                );
-            }
-        }, new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
-                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
-                return List.of(
-                        Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                        Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                        Square.defaultInstance(new Point(
-                                clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
-                        ),
-                        Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode)
-                );
-            }
-        })) {
+        T {
             /** @inheritDoc */
             @Override
             public Point getSpawnPoint(){
                 return OFF_AXIS_SPAWN_POINT;
+            }
+
+            @Override
+            public List<Square> assemble(Orientation orientation, Point axis, Color color, int colorCode) {
+                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
+                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
+                switch(orientation) {
+                    case FIRST:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
+                        );
+                    case SECOND:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
+                        );
+                    case THIRD:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
+                        );
+                    case FOURTH:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
+                        );
+                    default:
+                        return Collections.emptyList();
+                }
+            }
+        },
+
+        /**
+         * Off-axis.
+         */
+        Z {
+            /** @inheritDoc */
+            @Override
+            public Point getSpawnPoint(){
+                return OFF_AXIS_SPAWN_POINT;
+            }
+
+            @Override
+            public List<Square> assemble(Orientation orientation, Point axis, Color color, int colorCode) {
+                final int clx = axis.x - Utility.HALF_SQUARE_LENGTH;
+                final int cly = axis.y - Utility.HALF_SQUARE_LENGTH;
+                switch(orientation) {
+                    case FIRST:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(
+                                        clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
+                                ),
+                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
+                        );
+                    case SECOND:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(
+                                        clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
+                                )
+                        );
+                    case THIRD:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                                Square.defaultInstance(new Point(
+                                        clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
+                                )
+                        );
+                    case FOURTH:
+                        return List.of(
+                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                                Square.defaultInstance(new Point(
+                                        clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
+                                ),
+                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode)
+                        );
+                    default:
+                        return Collections.emptyList();
+                }
             }
         },
 
         /**
          * A NULL shape for use in constructing a {@code NullTetromino}.
          */
-        NULL (List.of(
-                Assembler.NULL_ASSEMBLER, Assembler.NULL_ASSEMBLER,
-                Assembler.NULL_ASSEMBLER, Assembler.NULL_ASSEMBLER
-        )) {
+        NULL {
             @Override
             public Point getSpawnPoint(){
                 return Point.NULL;
             }
+
+            @Override
+            public List<Square> assemble(Orientation orientation, Point axis, Color color, int colorCode) {
+                return Collections.emptyList();
+            }
         };
-
-        /**
-         * A {@code List} of {@code Assembler} implementations with indices that correspond
-         * to each {@code Orientation} ordinal value.
-         */
-        private final List<Assembler> assemblyLines;
-
-        /**
-         * A private constructor for a {@code Shape}.
-         */
-        Shape(final List<Assembler> assemblyLines){
-            this.assemblyLines = assemblyLines;
-        }
 
         /**
          * A method to express the spawn {@code Point} designated to each {@code Shape}.
@@ -890,6 +839,10 @@ public class Tetromino extends TetrisGraphic {
          * @return the {@code Point} at which the {@code Shape} will spawn
          */
         public abstract Point getSpawnPoint();
+
+        public abstract List<Square> assemble(
+            Orientation orientation, Point axis, Color color, int colorCode
+        );
 
     }
 

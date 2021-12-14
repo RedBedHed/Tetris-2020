@@ -6,7 +6,40 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d23fecac-766b-4d30-b4f1-4983fd40688c" name="Default Changelist" comment="" />
+    <list default="true" id="d23fecac-766b-4d30-b4f1-4983fd40688c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Direction$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Direction$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Direction$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Direction$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Direction$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Direction$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Direction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Direction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Orientation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Orientation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/TetrisLandscape.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/TetrisLandscape.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Square$GhostSquare.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Square$GhostSquare.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Square.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Square.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/TetrisGraphic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/TetrisGraphic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Tetromino$GhostTetromino.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Tetromino$GhostTetromino.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Tetromino$Shape.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Tetromino$Shape.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Tetromino$TetrominoFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Tetromino$TetrominoFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Tetromino.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Tetromino.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Utility.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Utility.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$ButtonType$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$ButtonType$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$ButtonType$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$ButtonType$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$ButtonType$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$ButtonType$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$ButtonType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$ButtonType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$GameStatus$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$GameStatus$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$GameStatus$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$GameStatus$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$GameStatus$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$GameStatus$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$GameStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$GameStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$TransitionStatus$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$TransitionStatus$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$TransitionStatus$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$TransitionStatus$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$TransitionStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$TransitionStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/Palette.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/Palette.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Engine/Tetromino/Tetromino.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Tetromino/Tetromino.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,7 +61,6 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -36,7 +68,9 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -119,6 +153,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -129,45 +164,13 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1596331296758</updated>
+      <workItem from="1635286889312" duration="748000" />
+      <workItem from="1635456801883" duration="22000" />
+      <workItem from="1639458451393" duration="2196000" />
     </task>
     <servers />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1614135858964">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1614135858964" />
-    <state x="211" y="141" key="FileChooserDialogImpl" timestamp="1620094356924">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="211" y="141" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1620094356924" />
-    <state width="914" height="284" key="GridCell.Tab.0.bottom" timestamp="1620094360174">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="914" height="284" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1620094360174" />
-    <state width="914" height="284" key="GridCell.Tab.0.center" timestamp="1620094360174">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="914" height="284" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1620094360174" />
-    <state width="914" height="284" key="GridCell.Tab.0.left" timestamp="1620094360174">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="914" height="284" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1620094360174" />
-    <state width="914" height="284" key="GridCell.Tab.0.right" timestamp="1620094360174">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="914" height="284" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1620094360174" />
-    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1616054800774">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616054800774" />
-    <state x="342" y="143" key="new project wizard" timestamp="1614391695967">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="342" y="143" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1614391695967" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1620152295371">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1620152295371" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
