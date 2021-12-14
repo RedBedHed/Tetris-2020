@@ -428,40 +428,40 @@ public class Tetromino extends TetrisGraphic {
                     case FIRST:
                         final int cly = axis.y - Utility.SQUARE_LENGTH;
                         return List.of(
-                                Square.defaultInstance(new Point(axis.x, cly), color, colorCode),
-                                Square.defaultInstance(new Point(axis.x + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(axis.x - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(
-                                        axis.x - Utility.DOUBLE_SQUARE_LENGTH, cly), color, colorCode
-                                )
+                            Square.defaultInstance(new Point(axis.x, cly), color, colorCode),
+                            Square.defaultInstance(new Point(axis.x + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(axis.x - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(
+                                axis.x - Utility.DOUBLE_SQUARE_LENGTH, cly), color, colorCode
+                            )
                         );
                     case SECOND:
                         return List.of(
-                                Square.defaultInstance(axis, color, colorCode),
-                                Square.defaultInstance(
-                                        new Point(axis.x, axis.y - Utility.DOUBLE_SQUARE_LENGTH), color, colorCode
-                                ),
-                                Square.defaultInstance(new Point(axis.x, axis.y - Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(axis.x, axis.y + Utility.SQUARE_LENGTH), color, colorCode)
+                            Square.defaultInstance(axis, color, colorCode),
+                            Square.defaultInstance(
+                                new Point(axis.x, axis.y - Utility.DOUBLE_SQUARE_LENGTH), color, colorCode
+                            ),
+                            Square.defaultInstance(new Point(axis.x, axis.y - Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(axis.x, axis.y + Utility.SQUARE_LENGTH), color, colorCode)
                         );
                     case THIRD:
                         return List.of(
-                                Square.defaultInstance(axis, color, colorCode),
-                                Square.defaultInstance(new Point(axis.x + Utility.SQUARE_LENGTH, axis.y), color, colorCode),
-                                Square.defaultInstance(new Point(axis.x - Utility.SQUARE_LENGTH, axis.y), color, colorCode),
-                                Square.defaultInstance(
-                                        new Point(axis.x - Utility.DOUBLE_SQUARE_LENGTH, axis.y), color, colorCode
-                                )
+                            Square.defaultInstance(axis, color, colorCode),
+                            Square.defaultInstance(new Point(axis.x + Utility.SQUARE_LENGTH, axis.y), color, colorCode),
+                            Square.defaultInstance(new Point(axis.x - Utility.SQUARE_LENGTH, axis.y), color, colorCode),
+                            Square.defaultInstance(
+                                new Point(axis.x - Utility.DOUBLE_SQUARE_LENGTH, axis.y), color, colorCode
+                            )
                         );
                     case FOURTH:
                         final int clx = axis.x - Utility.SQUARE_LENGTH;
                         return List.of(
-                                Square.defaultInstance(new Point(clx, axis.y), color, colorCode),
-                                Square.defaultInstance(
-                                        new Point(clx, axis.y - Utility.DOUBLE_SQUARE_LENGTH), color, colorCode
-                                ),
-                                Square.defaultInstance(new Point(clx, axis.y - Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(clx, axis.y + Utility.SQUARE_LENGTH), color, colorCode)
+                            Square.defaultInstance(new Point(clx, axis.y), color, colorCode),
+                            Square.defaultInstance(
+                                new Point(clx, axis.y - Utility.DOUBLE_SQUARE_LENGTH), color, colorCode
+                            ),
+                            Square.defaultInstance(new Point(clx, axis.y - Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(clx, axis.y + Utility.SQUARE_LENGTH), color, colorCode)
                         );
                     default:
                         return Collections.emptyList();
@@ -485,39 +485,39 @@ public class Tetromino extends TetrisGraphic {
                 switch(orientation) {
                     case FIRST:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(
-                                        clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
-                                ),
-                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(
+                                clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
+                            ),
+                            Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
                         );
                     case SECOND:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(
-                                        clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
-                                )
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(
+                                clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
+                            )
                         );
                     case THIRD:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(
-                                        clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
-                                )
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(
+                                clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
+                            )
                         );
                     case FOURTH:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(
-                                        clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
-                                )
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(
+                                 clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
+                            )
                         );
                     default:
                         return Collections.emptyList();
@@ -541,39 +541,39 @@ public class Tetromino extends TetrisGraphic {
                 switch(orientation) {
                     case FIRST:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(
-                                        clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
-                                ),
-                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(
+                                 clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
+                            ),
+                            Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
                         );
                     case SECOND:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(
-                                        clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
-                                )
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(
+                                clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
+                            )
                         );
                     case THIRD:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(
-                                        clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
-                                )
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(
+                                 clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
+                            )
                         );
                     case FOURTH:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(
-                                        clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
-                                )
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(
+                                clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
+                            )
                         );
                     default:
                         return Collections.emptyList();
@@ -595,12 +595,12 @@ public class Tetromino extends TetrisGraphic {
                 switch(orientation) {
                     case FIRST: case SECOND: case THIRD: case FOURTH:
                         return List.of(
-                                Square.defaultInstance(axis, color, colorCode),
-                                Square.defaultInstance(new Point(axis.x - Utility.SQUARE_LENGTH, axis.y), color, colorCode),
-                                Square.defaultInstance(new Point(axis.x, axis.y - Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(
-                                        axis.x - Utility.SQUARE_LENGTH, axis.y - Utility.SQUARE_LENGTH
-                                ), color, colorCode)
+                            Square.defaultInstance(axis, color, colorCode),
+                            Square.defaultInstance(new Point(axis.x - Utility.SQUARE_LENGTH, axis.y), color, colorCode),
+                            Square.defaultInstance(new Point(axis.x, axis.y - Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(
+                                 axis.x - Utility.SQUARE_LENGTH, axis.y - Utility.SQUARE_LENGTH
+                            ), color, colorCode)
                         );
                     default:
                         return Collections.emptyList();
@@ -624,39 +624,39 @@ public class Tetromino extends TetrisGraphic {
                 switch(orientation) {
                     case FIRST:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(
-                                        clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
-                                )
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(
+                                 clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
+                            )
                         );
                     case SECOND:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(
-                                        clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
-                                ),
-                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode)
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(
+                                clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
+                            ),
+                            Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode)
                         );
                     case THIRD:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(
-                                        clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
-                                )
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(
+                                clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
+                            )
                         );
                     case FOURTH:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(
-                                        clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
-                                ),
-                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(
+                                clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
+                            ),
+                            Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
                         );
                     default:
                         return Collections.emptyList();
@@ -680,31 +680,31 @@ public class Tetromino extends TetrisGraphic {
                 switch(orientation) {
                     case FIRST:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
                         );
                     case SECOND:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
                         );
                     case THIRD:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
                         );
                     case FOURTH:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode)
                         );
                     default:
                         return Collections.emptyList();
@@ -728,39 +728,39 @@ public class Tetromino extends TetrisGraphic {
                 switch(orientation) {
                     case FIRST:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(
-                                        clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
-                                ),
-                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(
+                                clx - Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
+                            ),
+                            Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode)
                         );
                     case SECOND:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(
-                                        clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
-                                )
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(clx + Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(
+                                clx + Utility.SQUARE_LENGTH, cly - Utility.SQUARE_LENGTH), color, colorCode
+                            )
                         );
                     case THIRD:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
-                                Square.defaultInstance(new Point(
-                                        clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
-                                )
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx, cly + Utility.SQUARE_LENGTH), color, colorCode),
+                            Square.defaultInstance(new Point(
+                                clx + Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
+                            )
                         );
                     case FOURTH:
                         return List.of(
-                                Square.defaultInstance(new Point(clx, cly), color, colorCode),
-                                Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
-                                Square.defaultInstance(new Point(
-                                        clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
-                                ),
-                                Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode)
+                            Square.defaultInstance(new Point(clx, cly), color, colorCode),
+                            Square.defaultInstance(new Point(clx - Utility.SQUARE_LENGTH, cly), color, colorCode),
+                            Square.defaultInstance(new Point(
+                                clx - Utility.SQUARE_LENGTH, cly + Utility.SQUARE_LENGTH), color, colorCode
+                            ),
+                            Square.defaultInstance(new Point(clx, cly - Utility.SQUARE_LENGTH), color, colorCode)
                         );
                     default:
                         return Collections.emptyList();
