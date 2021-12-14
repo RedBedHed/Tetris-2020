@@ -403,49 +403,6 @@ public class Tetromino extends TetrisGraphic {
     }
 
     /**
-     * Assembler
-     */
-    private interface Assembler {
-
-        /**
-         * A default implementation of {@code Assembler} to be referenced during instantiation
-         * of the NULL {@code Shape}.
-         */
-        Assembler NULL_ASSEMBLER = new Assembler(){};
-
-        /**
-         * An implementation of {@code Assembler} to be referenced during instantiation of the
-         * O {@code Shape}.
-         */
-        Assembler O_ASSEMBLER = new Assembler() {
-            @Override
-            public List<Square> assemble(final Point axis, final Color color, final int colorCode) {
-                return List.of(
-                        Square.defaultInstance(axis, color, colorCode),
-                        Square.defaultInstance(new Point(axis.x - Utility.SQUARE_LENGTH, axis.y), color, colorCode),
-                        Square.defaultInstance(new Point(axis.x, axis.y - Utility.SQUARE_LENGTH), color, colorCode),
-                        Square.defaultInstance(new Point(
-                                axis.x - Utility.SQUARE_LENGTH, axis.y - Utility.SQUARE_LENGTH
-                        ), color, colorCode)
-                );
-            }
-        };
-
-        /**
-         * A method to assemble a {@code List} of {@code Square}s that represent a
-         * {@code Tetromino}
-         *
-         * @param axis the axis of the {@code Tetromino} under construction
-         * @param color the color of the {@code Tetromino} under construction
-         * @return a {@code List} of {@code Square}s that represent a {@code Tetromino}
-         */
-        default List<Square> assemble(final Point axis, final Color color, final int colorCode){
-            return Collections.emptyList();
-        }
-
-    }
-
-    /**
      * Shape
      *
      * <p>

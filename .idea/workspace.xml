@@ -7,37 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d23fecac-766b-4d30-b4f1-4983fd40688c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Direction$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Direction$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Direction$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Direction$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Direction$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Direction$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Direction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Direction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Orientation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/Orientation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/TetrisLandscape.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Navigation/TetrisLandscape.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Square$GhostSquare.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Square$GhostSquare.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Square.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Square.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/TetrisGraphic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/TetrisGraphic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Tetromino$GhostTetromino.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Tetromino$GhostTetromino.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Tetromino$Shape.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Tetromino$Shape.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Tetromino$TetrominoFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Tetromino$TetrominoFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Tetromino.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Tetromino/Tetromino.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/Engine/Utility.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/Engine/Utility.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$ButtonType$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$ButtonType$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$ButtonType$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$ButtonType$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$ButtonType$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$ButtonType$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$ButtonType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$ButtonType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$GameStatus$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$GameStatus$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$GameStatus$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$GameStatus$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$GameStatus$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$GameStatus$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$GameStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$GameStatus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$TransitionStatus$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$TransitionStatus$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$TransitionStatus$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$TransitionStatus$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$TransitionStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel$TransitionStatus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/GridPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Tetris/GUI/Palette.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tetris/GUI/Palette.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Engine/Tetromino/Tetromino.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Tetromino/Tetromino.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,7 +135,7 @@
       <updated>1596331296758</updated>
       <workItem from="1635286889312" duration="748000" />
       <workItem from="1635456801883" duration="22000" />
-      <workItem from="1639458451393" duration="2196000" />
+      <workItem from="1639458451393" duration="2207000" />
     </task>
     <servers />
   </component>
