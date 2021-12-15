@@ -205,7 +205,9 @@ public enum Palette implements Paintable {
             g.drawLine(0, i, Utility.GRID_WIDTH, i);
     }
 
-    private static class Image {
+    private static final class Image {
+
+        Image() { }
 
         private static final BufferedImage OBSIDIAN = load("obs.png");
         private static final BufferedImage SEA_FLOOR = load("floor.png");
