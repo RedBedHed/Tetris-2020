@@ -25,6 +25,10 @@ public final class GridPanel extends JPanel {
     public static final int FIRST_LEVEL_SCORE_LIMIT;
     public static final int TIMER_DELAY;
     public static final GridPanel INSTANCE;
+    public static final int TITLE_SIZE;
+    public static final float OPACITY;
+    public static final int SUB_TEXT_SIZE;
+    public static final int LOG_2_8;
 
     static {
         PANEL_WIDTH = Utility.GRID_WIDTH;
@@ -36,6 +40,10 @@ public final class GridPanel extends JPanel {
         FIRST_LEVEL_SCORE_LIMIT = 8192;
         TIMER_DELAY = 10;
         INSTANCE = new GridPanel();
+        TITLE_SIZE = 50;
+        OPACITY = 0.55f;
+        SUB_TEXT_SIZE = 25;
+        LOG_2_8 = 3;
     }
 
     private Tetromino currentTet;
@@ -92,11 +100,8 @@ public final class GridPanel extends JPanel {
                 performKeyAction(e);
             }
         });
-        new Timer(TIMER_DELAY, new ActionListener(){
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                if(gameStatus.isRunning()) performTimerAction();
-            }
+        new Timer(TIMER_DELAY, e -> {
+            if(gameStatus.isRunning()) performTimerAction();
         }).start();
     }
 
@@ -281,12 +286,9 @@ public final class GridPanel extends JPanel {
     }
 
     private synchronized void updatePanel(){
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                revalidate();
-                repaint();
-            }
+        SwingUtilities.invokeLater(() -> {
+            revalidate();
+            repaint();
         });
     }
 
@@ -352,11 +354,9 @@ public final class GridPanel extends JPanel {
         ghostTet.paint(g);
         currentTet.paint(g);
         landscape.paint(g);
-        final int TITLE_SIZE = 50;
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setComposite(AlphaComposite.SrcOver.derive(OPACITY));
         if (gameStatus.isPaused()) {
-            final float OPACITY = 0.55f;
-            Graphics2D g2 = (Graphics2D) g;
-            g2.setComposite(AlphaComposite.SrcOver.derive(OPACITY));
             g2.setColor(Color.DARK_GRAY);
             g2.fillRect(
                     0,0, PANEL_WIDTH + Utility.SQUARE_BUFFER,
@@ -367,11 +367,6 @@ public final class GridPanel extends JPanel {
             g2.setFont(new Font("TimesRoman", Font.BOLD, TITLE_SIZE));
             g2.drawString("PAUSED", 57, 260);
         } else if(gameStatus.isGameOver()) {
-            final float OPACITY = 0.55f;
-            final int SUB_TEXT_SIZE = 25;
-            final int LOG_2_8 = 3;
-            Graphics2D g2 = (Graphics2D) g;
-            g2.setComposite(AlphaComposite.SrcOver.derive(OPACITY));
             g2.setColor(Color.DARK_GRAY);
             g2.fillRect(
                     0,0, PANEL_WIDTH + Utility.SQUARE_BUFFER,
@@ -395,9 +390,6 @@ public final class GridPanel extends JPanel {
             else g2.setColor(TEXT_COLOR);
             g2.drawString("No", 180, 430);
         } else if(levelTransitionStatus.isActive()){
-            final float OPACITY = 0.55f;
-            Graphics2D g2 = (Graphics2D) g;
-            g2.setComposite(AlphaComposite.SrcOver.derive(OPACITY));
             g2.setColor(Color.DARK_GRAY);
             g2.fillRect(
                     0,0, PANEL_WIDTH + Utility.SQUARE_BUFFER,
@@ -409,5 +401,4 @@ public final class GridPanel extends JPanel {
             g2.drawString("LEVEL UP", 36, 260);
         }
     }
-
 }

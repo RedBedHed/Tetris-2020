@@ -96,7 +96,6 @@ public final class Game {
         gameFrame.add(gamePanel, BorderLayout.CENTER);
         gameFrame.add(lineupPanel, BorderLayout.EAST);
         gameFrame.add(holdPanel, BorderLayout.WEST);
-        //gameFrame.setJMenuBar(makeMenu());
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -105,28 +104,17 @@ public final class Game {
         Game.INSTANCE.gameFrame.setVisible(true);
     }
 
-    public static JMenuBar makeMenu(){
-        final JMenuBar bar = new JMenuBar();
-        final JMenu menu = new JMenu();
-        menu.add(new JMenuItem("Exit"));
-        bar.add(menu);
-        return bar;
-    }
-
     /**
      * A method to reset the {@code Game}'s components.
      */
-    public final synchronized void reset(){
+    public synchronized void reset(){
         gamePanel.reset();
         lineupPanel.update(gamePanel.getTetLineup());
         holdPanel.update(gamePanel.getTetHold());
         scorePanel.reset();
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                gameFrame.getContentPane().revalidate();
-                gameFrame.getContentPane().repaint();
-            }
+        SwingUtilities.invokeLater(() -> {
+            gameFrame.getContentPane().revalidate();
+            gameFrame.getContentPane().repaint();
         });
         Set<Thread> threads = Thread.getAllStackTraces().keySet();
         for (final Thread t : threads) {
@@ -148,8 +136,8 @@ public final class Game {
      * @param level the current level
      * @param score the current score
      */
-    public final void update(final List<Tetromino> lineup, final Tetromino hold,
-                                          final int level, final int score){
+    public void update(final List<Tetromino> lineup, final Tetromino hold,
+                       final int level, final int score){
         lineupPanel.update(lineup);
         holdPanel.update(hold);
         scorePanel.update(level, score);
@@ -172,18 +160,15 @@ public final class Game {
         private void updateLineup(final List<Tetromino> lineup){
             final List<Tetromino> l = new ArrayList<>();
             int i = DISPLAY_Y_COORDINATE;
-            for(final Tetromino t: lineup) l.add(t.copyAt(DISPLAY_X_COORDINATE, i += 128));
+            for(final Tetromino t: lineup) l.add(t.copyAt(DISPLAY_X_COORDINATE, i += DISPLAY_Y_OFFSET));
             tetLineup = Utility.lockedList(l);
         }
 
         private synchronized void update(final List<Tetromino> lineup){
             updateLineup(lineup);
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    revalidate();
-                    repaint();
-                }
+            SwingUtilities.invokeLater(() -> {
+                revalidate();
+                repaint();
             });
         }
 
@@ -216,12 +201,9 @@ public final class Game {
 
         private synchronized void update(final Tetromino hold){
             updateHold(hold);
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    revalidate();
-                    repaint();
-                }
+            SwingUtilities.invokeLater(() -> {
+                revalidate();
+                repaint();
             });
         }
 
@@ -247,12 +229,9 @@ public final class Game {
         private synchronized void update(final int level, final int score){
             removeAll();
             add(updateLabel(level, score));
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    revalidate();
-                    repaint();
-                }
+            SwingUtilities.invokeLater(() -> {
+                revalidate();
+                repaint();
             });
         }
 
