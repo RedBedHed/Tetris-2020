@@ -207,7 +207,7 @@ public enum Palette implements Paintable {
 
     private static final class Image {
 
-        Image() { }
+        private Image() { }
 
         private static final BufferedImage OBSIDIAN = load("obs.png");
         private static final BufferedImage SEA_FLOOR = load("floor.png");
